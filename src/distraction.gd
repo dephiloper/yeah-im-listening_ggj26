@@ -3,6 +3,7 @@ class_name Distraction extends AnimatedSprite2D
 @export var distraction_sound: AudioStream
 @export var distraction_id: String
 @export var is_moving: bool = false
+@export var is_hovering: bool = false
 
 const DISTRACTION_WINDOW_SIZE := 90
 const MARGIN := 50
@@ -21,6 +22,8 @@ var _game: Game
 var _center_value: float
 var _target_position: Vector2 = Vector2.ZERO
 var _velocity: Vector2 = Vector2.ZERO
+
+var _time_passed: float = 0.0
 
 
 func _ready() -> void:
@@ -50,6 +53,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	_time_passed += delta
 	if not is_moving:
 		return
 
@@ -74,6 +78,9 @@ func _process(delta: float) -> void:
 	_velocity += target_velocity * 0.1
 	_velocity = _velocity.normalized()
 	position += _velocity * delta * 32
+
+	if is_hovering:
+		offset.y = sin(_time_passed * 15) * 3
 
 	if _velocity.x > 0.2:
 		flip_h = true

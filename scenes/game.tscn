@@ -7,7 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://0is5ffc1bwm5" path="res://assets/sprites/ui_panel.png" id="3_p57ef"]
 [ext_resource type="Texture2D" uid="uid://cdi27j267cciy" path="res://assets/sprites/npc.png" id="3_vtaks"]
 [ext_resource type="Texture2D" uid="uid://cigl0jjc4kuiu" path="res://assets/sprites/table.png" id="4_kvpfn"]
-[ext_resource type="PackedScene" path="res://scenes/dialogue.tscn" id="4_p57ef"]
+[ext_resource type="Script" uid="uid://vo2j8vnkm4b6" path="res://src/npc.gd" id="4_kvuet"]
+[ext_resource type="PackedScene" uid="uid://cix0ox0to3fvl" path="res://scenes/dialogue.tscn" id="4_p57ef"]
 [ext_resource type="Texture2D" uid="uid://df3c4lqd75eit" path="res://assets/sprites/player.png" id="5_dinhu"]
 [ext_resource type="Script" uid="uid://dbj7wfuarcld4" path="res://src/distraction_manager.gd" id="8_kvpfn"]
 [ext_resource type="Script" uid="uid://cilcolusm6oa4" path="res://src/distraction.gd" id="9_kvpfn"]
@@ -25,6 +26,8 @@ texture = ExtResource("2_iywne")
 [node name="Npc" type="Sprite2D" parent="Character" unique_id=1903752026]
 position = Vector2(216, 121)
 texture = ExtResource("3_vtaks")
+script = ExtResource("4_kvuet")
+time_spent_intense_distraction_threshold = 3.0
 
 [node name="Table" type="Sprite2D" parent="Character" unique_id=1796388759]
 position = Vector2(190, 237)
@@ -83,3 +86,5 @@ max_value = 225
 
 [node name="Dialogue" parent="." unique_id=292700514 instance=ExtResource("4_p57ef")]
 position = Vector2(19, 22)
+
+[connection signal="distraction_too_long" from="Character/Npc" to="Dialogue" method="_on_npc_distraction_too_long"]

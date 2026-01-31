@@ -1,4 +1,4 @@
-extends Node2D
+class_name Dialogue extends Node2D
 
 @export var characters_per_second: float = 30.0
 @export var delay_between_lines: float = 3.0
@@ -27,7 +27,7 @@ func _process(_delta: float) -> void:
 	rich_text_label.text = get_text()
 
 	if Input.is_key_pressed(KEY_L):
-		on_distraction_too_long()
+		_on_npc_distraction_too_long()
 
 func get_text() -> String:
 	var distraction_intesity: float = 0
@@ -41,11 +41,6 @@ func get_text() -> String:
 		active_text = current_distracted_text
 
 	return "[shake rate=%s level=%s connected=1]%s[/shake]" % [shake_rate, shake_offset_lvl, active_text]
-
-func on_distraction_too_long() -> void:
-	if current_distracted_text == "":
-		current_distracted_text = get_distracted_line()
-		scroll_text(current_distracted_text)
 
 func get_distracted_line() -> String:
 	var lines: PackedStringArray
@@ -106,3 +101,8 @@ func scroll_next_line() -> void:
 		return
 
 	scroll_text(main_lines[current_line_index])
+
+func _on_npc_distraction_too_long() -> void:
+	if current_distracted_text == "":
+		current_distracted_text = get_distracted_line()
+		scroll_text(current_distracted_text)

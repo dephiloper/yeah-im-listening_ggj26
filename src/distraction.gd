@@ -5,6 +5,7 @@ class_name Distraction extends Sprite2D
 @export var distraction_id: String
 
 const DISTRACTION_WINDOW_SIZE := 90
+const MARGIN := 50
 
 var min_value: int = 90
 var max_value: int = 270
@@ -15,6 +16,8 @@ var distraction_value: float = 0.0
 
 var _game: Game
 var _center_value: float
+var _target_position: Vector2 = Vector2.ZERO
+var _velocity: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
@@ -36,6 +39,37 @@ func _ready() -> void:
 	print(
 		"new distraction '%s' with range between %d and %d" % [distraction_id, min_value, max_value]
 	)
+
+
+func _process(delta: float) -> void:
+	if _velocity == Vector2.ZERO:
+		# create a circle around the distractions global position with a radius of 100 units and get a random point on the circle
+		# if the random point is outside of the screen try, again
+		var circle_radius := 50.0
+		var circle_center := global_position
+		var random_angle := randf() * PI * 2.0
+		var random_point := (
+			circle_center
+			+ Vector2(circle_radius * cos(random_angle), circle_radius * sin(random_angle))
+		)
+		if (
+			random_point.x < MARGIN
+			or random_point.x > get_viewport().size.x - MARGIN
+			or random_point.y < MARGIN
+			or random_point.y > get_viewport().size.y - MARGIN
+		):
+			_velocity = Vector2.ZERO
+		else:
+			_target_position = random_point
+			_velocity = position.direction_to(_target_position) * 32
+
+		return
+
+	position += _velocity * delta
+
+	if position.distance_to(_target_position) < 10:
+		_target_position = Vector2.ZERO
+		_velocity = Vector2.ZERO
 
 
 func find_new_distraction_window() -> Array:

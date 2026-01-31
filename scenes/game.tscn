@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bvhr1fkliq18f" path="res://scenes/distraction.tscn" id="9_dinhu"]
 [ext_resource type="AudioStream" uid="uid://rkb5u5dk0kgk" path="res://assets/audio/wasp[1].wav" id="12_ir15t"]
 [ext_resource type="AudioStream" uid="uid://demj4yey8fb7r" path="res://assets/audio/catpurr[1].wav" id="12_trtic"]
+[ext_resource type="AudioStream" uid="uid://cq34wpygxd547" path="res://assets/audio/backgroundmusic_loop.wav" id="13_kvuet"]
 [ext_resource type="AudioStream" uid="uid://cuwth4178x08w" path="res://assets/audio/crying_bb[1].wav" id="15_ca42v"]
 [ext_resource type="AudioStream" uid="uid://j5ruhvia18h6" path="res://assets/audio/coffeegrinder[1].wav" id="16_rysoc"]
 
@@ -20,6 +21,7 @@
 script = ExtResource("1_uwrxv")
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=1395502102]
+z_index = -2
 position = Vector2(318.11108, 180)
 texture = ExtResource("2_iywne")
 
@@ -82,5 +84,10 @@ distraction_id = "wasp"
 
 [node name="Dialogue" parent="." unique_id=292700514 instance=ExtResource("4_p57ef")]
 position = Vector2(19, 22)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2087598050]
+stream = ExtResource("13_kvuet")
+volume_db = -40.0
+autoplay = true
 
 [connection signal="distraction_too_long" from="Character/Npc" to="Dialogue" method="_on_npc_distraction_too_long"]

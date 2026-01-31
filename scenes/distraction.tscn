@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cilcolusm6oa4" path="res://src/distraction.gd" id="2_iaghv"]
 
 [node name="Distraction" type="Sprite2D" unique_id=959290655]
+z_index = -1
 texture = ExtResource("1_huxmp")
 script = ExtResource("2_iaghv")
 distraction_id = "cat"

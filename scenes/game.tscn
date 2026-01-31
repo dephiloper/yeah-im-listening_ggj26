@@ -133,7 +133,7 @@ script = ExtResource("8_kvpfn")
 
 [node name="Timer" type="Timer" parent="DistractionManager" unique_id=1677851654]
 unique_name_in_owner = true
-wait_time = 5.0
+wait_time = 10.0
 one_shot = true
 
 [node name="Distraction" parent="DistractionManager" unique_id=959290655 instance=ExtResource("9_dinhu")]

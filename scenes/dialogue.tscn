@@ -1,24 +1,17 @@
-[gd_scene format=3 uid="uid://cix0ox0to3fvl"]
+[gd_scene format=3 uid="uid://bwgmaf870jxmy"]
 
 [ext_resource type="Script" uid="uid://btxeu53gdvu2l" path="res://src/dialogue.gd" id="1_jwyou"]
+[ext_resource type="Texture2D" uid="uid://dgridweynpaod" path="res://assets/sprites/ui_speechbubble.png" id="2_3n4vj"]
 
 [node name="Dialogue" type="Node2D" unique_id=292700514]
 script = ExtResource("1_jwyou")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=769582122]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 72.0
-offset_top = 26.0
-offset_right = 551.0
-offset_bottom = 118.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1309504694]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_3n4vj")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect" unique_id=1747282943]
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect" unique_id=1747282943]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -26,13 +19,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -204.5
-offset_top = -37.0
-offset_right = 203.5
-offset_bottom = 29.0
+offset_left = -79.5
+offset_top = -24.5
+offset_right = 70.5
+offset_bottom = 23.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/normal_font_size = 7
 bbcode_enabled = true
-text = "[color=black]Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. [/color]"
+text = "[color=black]Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. [/color]"
+horizontal_alignment = 1
+vertical_alignment = 1

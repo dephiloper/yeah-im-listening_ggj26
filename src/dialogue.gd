@@ -1,9 +1,13 @@
-extends Node2D
+class_name Dialogue extends Node2D
 
 @export var characters_per_second: float = 30.0
 @export var delay_between_lines: float = 3.0
 
+@export var max_shake_rate: int = 50
+@export var max_shake_offset: int = 10
+
 @onready var rich_text_label: RichTextLabel = %RichTextLabel
+@onready var distraction_manager: DistractionManager = %DistractionManager
 
 var tween: Tween
 var main_lines: PackedStringArray
@@ -11,7 +15,7 @@ var current_line_index: int = 0
 
 var distracted_lines: Array[PackedStringArray]
 var distracted_level: int = 0
-var is_distracted_text: bool
+var current_distracted_text: String = ""
 
 func _ready() -> void:
 	main_lines = load_dialogue_lines()
@@ -20,15 +24,23 @@ func _ready() -> void:
 	scroll_text(main_lines[current_line_index])
 
 func _process(_delta: float) -> void:
-	# temporary debug to press D
-	if Input.is_key_pressed(KEY_D):
-		on_distracted()
+	rich_text_label.text = get_text()
 
-func on_distracted() -> void:
-	if !is_distracted_text:
-		var line = get_distracted_line()
-		is_distracted_text = true
-		scroll_text(line)
+	if Input.is_key_pressed(KEY_L):
+		_on_npc_distraction_too_long()
+
+func get_text() -> String:
+	var distraction_intesity: float = 0
+	if distraction_manager.active_distraction:
+		distraction_intesity = distraction_manager.active_distraction.distraction_value
+
+	var shake_rate = max_shake_rate * distraction_intesity
+	var shake_offset_lvl = max_shake_offset * distraction_intesity
+	var active_text = main_lines[current_line_index]
+	if current_distracted_text != "":
+		active_text = current_distracted_text
+
+	return "[shake rate=%s level=%s connected=1]%s[/shake]" % [shake_rate, shake_offset_lvl, active_text]
 
 func get_distracted_line() -> String:
 	var lines: PackedStringArray
@@ -79,12 +91,18 @@ func scroll_text(text: String) -> void:
 	tween.tween_callback(scroll_next_line).set_delay(delay_between_lines)
 
 func scroll_next_line() -> void:
-	if is_distracted_text:
-		is_distracted_text = false
+	if current_distracted_text != "":
+		current_distracted_text = ""
 	else:
 		current_line_index += 1
 
 	if current_line_index >= main_lines.size():
+		current_line_index = main_lines.size() - 1
 		return
 
 	scroll_text(main_lines[current_line_index])
+
+func _on_npc_distraction_too_long() -> void:
+	if current_distracted_text == "":
+		current_distracted_text = get_distracted_line()
+		scroll_text(current_distracted_text)

@@ -14,7 +14,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var axis := Input.get_axis("knob_01_left", "knob_01_right")
-	_main.rotation += axis * delta * 5.0
+	_main.rotation += axis * delta * 1.5
 
 	var rotation_value: int = int(_main.rotation_degrees) % 360
 

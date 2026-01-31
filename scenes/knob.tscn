@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b1qvfgkm7dixj" path="res://src/knob.gd" id="1_6f5qt"]
 [ext_resource type="Texture2D" uid="uid://e7vryl1b4vyj" path="res://icon.svg" id="2_6a2i3"]
+[ext_resource type="Texture2D" uid="uid://culym1ssp6o5s" path="res://assets/sprites/knob.png" id="2_pipaf"]
 
 [node name="Knob" type="Node2D" unique_id=1175242466]
 script = ExtResource("1_6f5qt")
@@ -9,7 +10,7 @@ script = ExtResource("1_6f5qt")
 [node name="Main" type="Sprite2D" parent="." unique_id=1911125841]
 unique_name_in_owner = true
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_6a2i3")
+texture = ExtResource("2_pipaf")
 
 [node name="Sprite2D" type="Sprite2D" parent="Main" unique_id=329487309]
 modulate = Color(0, 0, 0, 1)

@@ -4,7 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://clwjwylxujvt8" path="res://assets/sprites/bg.png" id="2_iywne"]
 [ext_resource type="Texture2D" uid="uid://oveupsvbkojy" path="res://assets/sprites/icon.svg" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://cpdu6h6wg3ark" path="res://scenes/knob.tscn" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://0is5ffc1bwm5" path="res://assets/sprites/ui_panel.png" id="3_p57ef"]
+[ext_resource type="Texture2D" uid="uid://cdi27j267cciy" path="res://assets/sprites/npc.png" id="3_vtaks"]
 [ext_resource type="Script" uid="uid://dnmjy50tbkomp" path="res://src/visual_distraction.gd" id="4_iywne"]
+[ext_resource type="Texture2D" uid="uid://cigl0jjc4kuiu" path="res://assets/sprites/table.png" id="4_kvpfn"]
+[ext_resource type="Texture2D" uid="uid://df3c4lqd75eit" path="res://assets/sprites/player.png" id="5_dinhu"]
+[ext_resource type="Texture2D" uid="uid://bdt0yv607ho6m" path="res://assets/sprites/cat.png" id="10_kvuet"]
 
 [node name="Game" type="Node2D" unique_id=543216258]
 script = ExtResource("1_uwrxv")
@@ -13,9 +18,29 @@ script = ExtResource("1_uwrxv")
 position = Vector2(318.11108, 180)
 texture = ExtResource("2_iywne")
 
+[node name="Character" type="Node2D" parent="." unique_id=1542768464]
+
+[node name="Npc" type="Sprite2D" parent="Character" unique_id=1903752026]
+position = Vector2(216, 121)
+texture = ExtResource("3_vtaks")
+
+[node name="Table" type="Sprite2D" parent="Character" unique_id=1796388759]
+position = Vector2(190, 237)
+texture = ExtResource("4_kvpfn")
+
+[node name="Player" type="Sprite2D" parent="Character" unique_id=207300153]
+position = Vector2(153, 227)
+texture = ExtResource("5_dinhu")
+
+[node name="UI" type="Node2D" parent="." unique_id=1041925857]
+
+[node name="Sprite2D" type="Sprite2D" parent="UI" unique_id=64126092]
+position = Vector2(318, 307)
+texture = ExtResource("3_p57ef")
+
 [node name="Knob" parent="." unique_id=1175242466 instance=ExtResource("3_lnu2h")]
 unique_name_in_owner = true
-position = Vector2(311, 300)
+position = Vector2(319, 293)
 
 [node name="Distractions" type="Node" parent="." unique_id=1291611955]
 unique_name_in_owner = true
@@ -36,3 +61,7 @@ texture = ExtResource("3_lbhrr")
 script = ExtResource("4_iywne")
 min_value = 250
 max_value = 290
+
+[node name="Sprite2D" type="Sprite2D" parent="Distractions" unique_id=2064987961]
+position = Vector2(436, 157)
+texture = ExtResource("10_kvuet")

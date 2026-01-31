@@ -7,10 +7,10 @@ class_name Distraction extends AnimatedSprite2D
 const DISTRACTION_WINDOW_SIZE := 90
 const MARGIN := 50
 
-const MIN_X_CONSTRAINT := MARGIN + 150
-const MAX_X_CONSTRAINT := MARGIN
-const MIN_Y_CONSTRAINT := MARGIN
-const MAX_Y_CONSTRAINT := MARGIN + 50
+@export var min_x: int = 0
+@export var max_x: int = 640
+@export var min_y: int = 0
+@export var max_y: int = 360
 
 var min_value: int = 90
 var max_value: int = 270
@@ -30,10 +30,7 @@ func _ready() -> void:
 	_game.game_ready.connect(_on_knobs_ready)
 
 	if is_moving:
-		position = Vector2(
-			randf_range(MIN_X_CONSTRAINT, get_viewport_rect().size.x - MAX_X_CONSTRAINT),
-			randf_range(MIN_Y_CONSTRAINT, get_viewport_rect().size.y - MAX_Y_CONSTRAINT)
-		)
+		position = Vector2(randf_range(min_x, max_x), randf_range(min_y, max_y))
 
 	var new_distraction_window := find_new_distraction_window()
 	min_value = new_distraction_window[0]
@@ -134,8 +131,8 @@ func _on_knob_value_changed(id: int, value: int) -> void:
 
 func is_inside_screen(random_point: Vector2) -> bool:
 	return (
-		random_point.x < MIN_X_CONSTRAINT
-		or random_point.x > get_viewport_rect().size.x - MAX_X_CONSTRAINT
-		or random_point.y < MIN_Y_CONSTRAINT
-		or random_point.y > get_viewport_rect().size.y - MAX_Y_CONSTRAINT
+		random_point.x < min_x
+		or random_point.x > max_x
+		or random_point.y < min_y
+		or random_point.y > max_y
 	)

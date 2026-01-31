@@ -13,20 +13,23 @@
 [ext_resource type="PackedScene" uid="uid://bvhr1fkliq18f" path="res://scenes/distraction.tscn" id="9_dinhu"]
 [ext_resource type="Texture2D" uid="uid://08jm114jbwtr" path="res://assets/sprites/cat1.png" id="11_1kice"]
 [ext_resource type="Texture2D" uid="uid://b1k5jpvgahun" path="res://assets/sprites/cat2.png" id="12_5newe"]
-[ext_resource type="AudioStream" uid="uid://rkb5u5dk0kgk" path="res://assets/audio/wasp[1].wav" id="12_ir15t"]
+[ext_resource type="AudioStream" uid="uid://buj7dy07gpwb7" path="res://assets/audio/wasp[1].wav" id="12_ir15t"]
 [ext_resource type="AudioStream" uid="uid://demj4yey8fb7r" path="res://assets/audio/catpurr[1].wav" id="12_trtic"]
 [ext_resource type="Texture2D" uid="uid://dbcvxeos0yxjj" path="res://assets/sprites/cat3.png" id="13_37s47"]
 [ext_resource type="AudioStream" uid="uid://cq34wpygxd547" path="res://assets/audio/backgroundmusic_loop.wav" id="13_kvuet"]
 [ext_resource type="Texture2D" uid="uid://ehue4mbq8k5k" path="res://assets/sprites/noise_wave3.png" id="13_ssvqc"]
 [ext_resource type="Texture2D" uid="uid://dcf47u8xuc1nq" path="res://assets/sprites/cat4.png" id="14_bt5mj"]
+[ext_resource type="AudioStream" uid="uid://dhis1ca47hx0g" path="res://assets/audio/cafeteria[1].wav" id="14_ca42v"]
 [ext_resource type="Texture2D" uid="uid://dg7pxh0vpijat" path="res://assets/sprites/wasp.png" id="14_rysoc"]
 [ext_resource type="AudioStream" uid="uid://cuwth4178x08w" path="res://assets/audio/crying_bb[1].wav" id="15_ca42v"]
 [ext_resource type="Texture2D" uid="uid://c76prnxxmus3" path="res://assets/sprites/noise_wave1.png" id="16_bt5mj"]
-[ext_resource type="AudioStream" uid="uid://j5ruhvia18h6" path="res://assets/audio/coffeegrinder[1].wav" id="16_rysoc"]
+[ext_resource type="AudioStream" uid="uid://ce7bhiovdvm7m" path="res://assets/audio/coffeegrinder[1].wav" id="16_rysoc"]
 [ext_resource type="Texture2D" uid="uid://c1k0t1gnyu66y" path="res://assets/sprites/noise_wave2.png" id="17_e1j6l"]
 [ext_resource type="Texture2D" uid="uid://ctuxb0ypg4ueg" path="res://assets/sprites/noise_annoying1.png" id="20_bhx41"]
 [ext_resource type="Texture2D" uid="uid://gbke7sqnr8nv" path="res://assets/sprites/noise_annoying2.png" id="21_qnb83"]
 [ext_resource type="Texture2D" uid="uid://ccfws2477yeqi" path="res://assets/sprites/noise_annoying3.png" id="22_sww3w"]
+[ext_resource type="AudioStream" uid="uid://btkc7g5agyb2i" path="res://assets/audio/Chihuahua[1].wav" id="25_qnb83"]
+[ext_resource type="AudioStream" uid="uid://dp0j1gcmqaeu8" path="res://assets/audio/CAThissing[1].wav" id="28_sgl2t"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e1j6l"]
 animations = [{
@@ -82,11 +85,65 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_qnb83"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_sww3w"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("14_rysoc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qnb83"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_bt5mj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_e1j6l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ssvqc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sgl2t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_bhx41")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_qnb83")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_sww3w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qouja"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_1kice")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5newe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_37s47")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_bt5mj")
 }],
 "loop": true,
 "name": &"default",
@@ -164,9 +221,33 @@ distraction_id = "baby"
 [node name="Distraction4" parent="DistractionManager" unique_id=1828121342 instance=ExtResource("9_dinhu")]
 modulate = Color(0, 0.34509805, 1, 1)
 position = Vector2(548, 54)
-sprite_frames = SubResource("SpriteFrames_qnb83")
+sprite_frames = SubResource("SpriteFrames_sww3w")
 distraction_sound = ExtResource("12_ir15t")
 distraction_id = "wasp"
+is_moving = true
+
+[node name="Distraction5" parent="DistractionManager" unique_id=797569358 instance=ExtResource("9_dinhu")]
+position = Vector2(505, 235)
+rotation = 1.0050417
+sprite_frames = SubResource("SpriteFrames_qnb83")
+autoplay = "default"
+distraction_sound = ExtResource("25_qnb83")
+distraction_id = "chihuahua"
+
+[node name="Distraction6" parent="DistractionManager" unique_id=22519079 instance=ExtResource("9_dinhu")]
+position = Vector2(423, 51)
+rotation = 2.0493112
+sprite_frames = SubResource("SpriteFrames_sgl2t")
+autoplay = "default"
+distraction_sound = ExtResource("14_ca42v")
+distraction_id = "cafeteria"
+
+[node name="Distraction7" parent="DistractionManager" unique_id=1613454640 instance=ExtResource("9_dinhu")]
+position = Vector2(382, 243)
+sprite_frames = SubResource("SpriteFrames_qouja")
+autoplay = "default"
+distraction_sound = ExtResource("28_sgl2t")
+distraction_id = "cat_hiss"
 is_moving = true
 
 [node name="Dialogue" parent="." unique_id=292700514 instance=ExtResource("4_p57ef")]

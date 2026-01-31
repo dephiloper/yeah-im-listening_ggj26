@@ -1,5 +1,6 @@
-class_name VisualDistraction extends Sprite2D
+class_name Distraction extends Sprite2D
 
+@export var distraction_id: String
 @export var min_value: int = 90
 @export var max_value: int = 270
 
@@ -11,8 +12,13 @@ func _ready() -> void:
 	_game = find_parent("Game")
 	_game.game_ready.connect(_on_knobs_ready)
 
+	_on_knobs_ready()
+
 
 func _on_knobs_ready() -> void:
+	if not _game.is_ready:
+		return
+
 	for knob: Knob in _game.knobs:
 		knob.value_changed.connect(_on_knob_value_changed)
 

@@ -6,10 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://cpdu6h6wg3ark" path="res://scenes/knob.tscn" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://0is5ffc1bwm5" path="res://assets/sprites/ui_panel.png" id="3_p57ef"]
 [ext_resource type="Texture2D" uid="uid://cdi27j267cciy" path="res://assets/sprites/npc.png" id="3_vtaks"]
-[ext_resource type="Script" uid="uid://dnmjy50tbkomp" path="res://src/visual_distraction.gd" id="4_iywne"]
 [ext_resource type="Texture2D" uid="uid://cigl0jjc4kuiu" path="res://assets/sprites/table.png" id="4_kvpfn"]
-[ext_resource type="PackedScene" uid="uid://cix0ox0to3fvl" path="res://scenes/dialogue.tscn" id="4_p57ef"]
+[ext_resource type="PackedScene" path="res://scenes/dialogue.tscn" id="4_p57ef"]
 [ext_resource type="Texture2D" uid="uid://df3c4lqd75eit" path="res://assets/sprites/player.png" id="5_dinhu"]
+[ext_resource type="Script" uid="uid://dbj7wfuarcld4" path="res://src/distraction_manager.gd" id="8_kvpfn"]
+[ext_resource type="Script" uid="uid://cilcolusm6oa4" path="res://src/distraction.gd" id="9_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://bdt0yv607ho6m" path="res://assets/sprites/cat.png" id="10_kvuet"]
 
 [node name="Game" type="Node2D" unique_id=543216258]
@@ -43,29 +44,42 @@ texture = ExtResource("3_p57ef")
 unique_name_in_owner = true
 position = Vector2(319, 293)
 
-[node name="Distractions" type="Node" parent="." unique_id=1291611955]
+[node name="DistractionManager" type="Node" parent="." unique_id=1291611955]
 unique_name_in_owner = true
+script = ExtResource("8_kvpfn")
 
-[node name="VisualDistraction" type="Sprite2D" parent="Distractions" unique_id=1940495503]
-modulate = Color(1, 0, 1, 1)
-position = Vector2(557.5, 44.5)
-scale = Vector2(0.3828125, 0.3828125)
-texture = ExtResource("3_lbhrr")
-script = ExtResource("4_iywne")
-max_value = 120
+[node name="Timer" type="Timer" parent="DistractionManager" unique_id=1677851654]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
 
-[node name="VisualDistraction2" type="Sprite2D" parent="Distractions" unique_id=44159637]
-modulate = Color(2.0214916e-06, 0.7337821, 0.52568334, 1)
-position = Vector2(70, 134)
-scale = Vector2(0.3828125, 0.3828125)
-texture = ExtResource("3_lbhrr")
-script = ExtResource("4_iywne")
-min_value = 250
-max_value = 290
-
-[node name="Sprite2D" type="Sprite2D" parent="Distractions" unique_id=2064987961]
+[node name="Distraction" type="Sprite2D" parent="DistractionManager" unique_id=2064987961]
 position = Vector2(436, 157)
 texture = ExtResource("10_kvuet")
+script = ExtResource("9_kvpfn")
+distraction_id = "cat"
+min_value = 45
+max_value = 135
+
+[node name="Distraction2" type="Sprite2D" parent="DistractionManager" unique_id=1940495503]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(69, 109)
+scale = Vector2(0.3828125, 0.3828125)
+texture = ExtResource("3_lbhrr")
+script = ExtResource("9_kvpfn")
+distraction_id = "fly"
+min_value = 225
+max_value = 315
+
+[node name="Distraction3" type="Sprite2D" parent="DistractionManager" unique_id=828960881]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(282, 58.999992)
+scale = Vector2(0.3828125, 0.3828125)
+texture = ExtResource("3_lbhrr")
+script = ExtResource("9_kvpfn")
+distraction_id = "coffee"
+min_value = 135
+max_value = 225
 
 [node name="Dialogue" parent="." unique_id=292700514 instance=ExtResource("4_p57ef")]
 position = Vector2(19, 22)

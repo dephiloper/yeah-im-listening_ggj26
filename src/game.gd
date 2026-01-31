@@ -3,18 +3,15 @@ class_name Game extends Node2D
 signal game_ready
 
 @onready var _knob := %Knob
-@onready var _distraction_container: Node = %Distractions
+@onready var _distraction_manager: DistractionManager = %DistractionManager
 
 var knobs: Array = []
-var visual_distractions: Array = []
+var distractions: Array = []
+var is_ready: bool = false
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	knobs.append(_knob)
 
-	for child in _distraction_container.get_children():
-		if child is VisualDistraction:
-			visual_distractions.append(child)
-
+	is_ready = true
 	game_ready.emit()

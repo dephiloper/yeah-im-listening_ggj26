@@ -1,12 +1,14 @@
-extends Node2D
+class_name Game extends Node2D
+
+signal knobs_ready
 
 @onready var _knob := %Knob
+
+var knobs = []
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_knob.value_changed.connect(_on_knob_value_changed)
+	knobs.append(_knob)
 
-
-func _on_knob_value_changed(id: int, value: int) -> void:
-	print("Knob %d value changed to: %d" % [id, value])
+	knobs_ready.emit()

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cix0ox0to3fvl"]
 
-[ext_resource type="Script" uid="uid://cwjnlj5ibdddw" path="res://scenes/dialogue.gd" id="1_jwyou"]
+[ext_resource type="Script" uid="uid://btxeu53gdvu2l" path="res://src/dialogue.gd" id="1_jwyou"]
 
 [node name="Dialogue" type="Node2D" unique_id=292700514]
 script = ExtResource("1_jwyou")
@@ -32,5 +32,6 @@ offset_right = 296.0
 offset_bottom = 49.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "[color=black]Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. [/color]"

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://03c280154jim"]
+
+[ext_resource type="Texture2D" uid="uid://cdi27j267cciy" path="res://assets/sprites/npc.png" id="1_abqhh"]
+[ext_resource type="Script" uid="uid://vo2j8vnkm4b6" path="res://src/npc.gd" id="2_rv78h"]
+[ext_resource type="Texture2D" uid="uid://cjbntcypo7v4t" path="res://assets/sprites/ui_happy.png" id="3_4wlns"]
+[ext_resource type="Texture2D" uid="uid://bsvx64mj84m6i" path="res://assets/sprites/ui_emo_angry.png" id="3_rv78h"]
+[ext_resource type="Texture2D" uid="uid://jhx5apcju1hm" path="res://assets/sprites/ui_normal.png" id="4_4wlns"]
+
+[node name="Npc" type="Sprite2D" unique_id=950719507 node_paths=PackedStringArray("emote")]
+texture = ExtResource("1_abqhh")
+script = ExtResource("2_rv78h")
+emote = NodePath("Sprite2D")
+happy_emote = ExtResource("3_4wlns")
+normal_emote = ExtResource("4_4wlns")
+angry_emote = ExtResource("3_rv78h")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=870824356]
+position = Vector2(52, -54)

@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://bqvy62e2koycj"]
 
 [ext_resource type="Script" uid="uid://dkixvfx3bhdnu" path="res://src/game.gd" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://oveupsvbkojy" path="res://assets/sprites/icon.svg" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://cpdu6h6wg3ark" path="res://scenes/knob.tscn" id="3_lnu2h"]
+[ext_resource type="Script" uid="uid://dnmjy50tbkomp" path="res://src/visual_distraction.gd" id="4_iywne"]
 
 [node name="Game" type="Node2D" unique_id=543216258]
 script = ExtResource("1_uwrxv")
@@ -9,3 +11,20 @@ script = ExtResource("1_uwrxv")
 [node name="Knob" parent="." unique_id=1175242466 instance=ExtResource("3_lnu2h")]
 unique_name_in_owner = true
 position = Vector2(580, 532)
+
+[node name="Distractions" type="Node" parent="." unique_id=1291611955]
+
+[node name="VisualDistraction" type="Sprite2D" parent="Distractions" unique_id=1940495503]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(862, 109)
+texture = ExtResource("3_lbhrr")
+script = ExtResource("4_iywne")
+max_value = 120
+
+[node name="VisualDistraction2" type="Sprite2D" parent="Distractions" unique_id=44159637]
+modulate = Color(2.0214916e-06, 0.7337821, 0.52568334, 1)
+position = Vector2(333, 118)
+texture = ExtResource("3_lbhrr")
+script = ExtResource("4_iywne")
+min_value = 250
+max_value = 290

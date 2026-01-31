@@ -14,8 +14,9 @@ var main_lines: PackedStringArray
 var current_line_index: int = 0
 
 var distracted_lines: Array[PackedStringArray]
-var distracted_level: int = 0
-var current_distracted_text: String = ""
+var current_distracted_text: String
+var is_very_distracted: bool = false
+var distraction_level: int
 
 func _ready() -> void:
 	main_lines = load_dialogue_lines()
@@ -26,9 +27,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	rich_text_label.text = get_text()
 
-	if Input.is_key_pressed(KEY_L):
-		_on_npc_distraction_too_long()
-
 func get_text() -> String:
 	var distraction_intesity: float = 0
 	if distraction_manager.active_distraction:
@@ -37,15 +35,15 @@ func get_text() -> String:
 	var shake_rate = max_shake_rate * distraction_intesity
 	var shake_offset_lvl = max_shake_offset * distraction_intesity
 	var active_text = main_lines[current_line_index]
-	if current_distracted_text != "":
+	if is_very_distracted:
 		active_text = current_distracted_text
 
 	return "[shake rate=%s level=%s connected=1]%s[/shake]" % [shake_rate, shake_offset_lvl, active_text]
 
 func get_distracted_line() -> String:
 	var lines: PackedStringArray
-	if (distracted_level < distracted_lines.size()):
-		lines = distracted_lines[distracted_level]
+	if (distraction_level < distracted_lines.size()):
+		lines = distracted_lines[distraction_level]
 	else:
 		lines = distracted_lines[distracted_lines.size() - 1]
 
@@ -91,8 +89,9 @@ func scroll_text(text: String) -> void:
 	tween.tween_callback(scroll_next_line).set_delay(delay_between_lines)
 
 func scroll_next_line() -> void:
-	if current_distracted_text != "":
-		current_distracted_text = ""
+	if is_very_distracted:
+		current_distracted_text = get_distracted_line()
+		scroll_text(current_distracted_text)
 	else:
 		current_line_index += 1
 
@@ -102,7 +101,12 @@ func scroll_next_line() -> void:
 
 	scroll_text(main_lines[current_line_index])
 
-func _on_npc_distraction_too_long() -> void:
-	if current_distracted_text == "":
+func _on_npc_distraction_too_long(level: int) -> void:
+	if !is_very_distracted:
+		is_very_distracted = true
+		self.distraction_level = level
 		current_distracted_text = get_distracted_line()
 		scroll_text(current_distracted_text)
+
+func _on_npc_distraction_stopped() -> void:
+	is_very_distracted = false

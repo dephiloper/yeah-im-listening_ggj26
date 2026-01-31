@@ -1,8 +1,8 @@
 class_name Distraction extends Sprite2D
 
 @export var distraction_sound: AudioStream
-
 @export var distraction_id: String
+@export var is_moving: bool = false
 
 const DISTRACTION_WINDOW_SIZE := 90
 const MARGIN := 50
@@ -52,6 +52,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if not is_moving:
+		return
+
 	if _target_position == Vector2.ZERO:
 		# create a circle around the distractions global position with a radius of 100 units and get a random point on the circle
 		# if the random point is outside of the screen try, again

@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cdi27j267cciy" path="res://assets/sprites/npc.png" id="3_vtaks"]
 [ext_resource type="Script" uid="uid://dnmjy50tbkomp" path="res://src/visual_distraction.gd" id="4_iywne"]
 [ext_resource type="Texture2D" uid="uid://cigl0jjc4kuiu" path="res://assets/sprites/table.png" id="4_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://cix0ox0to3fvl" path="res://scenes/dialogue.tscn" id="4_p57ef"]
 [ext_resource type="Texture2D" uid="uid://df3c4lqd75eit" path="res://assets/sprites/player.png" id="5_dinhu"]
 [ext_resource type="Texture2D" uid="uid://bdt0yv607ho6m" path="res://assets/sprites/cat.png" id="10_kvuet"]
 
@@ -55,7 +56,7 @@ max_value = 120
 
 [node name="VisualDistraction2" type="Sprite2D" parent="Distractions" unique_id=44159637]
 modulate = Color(2.0214916e-06, 0.7337821, 0.52568334, 1)
-position = Vector2(66.5, 41.5)
+position = Vector2(70, 134)
 scale = Vector2(0.3828125, 0.3828125)
 texture = ExtResource("3_lbhrr")
 script = ExtResource("4_iywne")
@@ -65,3 +66,6 @@ max_value = 290
 [node name="Sprite2D" type="Sprite2D" parent="Distractions" unique_id=2064987961]
 position = Vector2(436, 157)
 texture = ExtResource("10_kvuet")
+
+[node name="Dialogue" parent="." unique_id=292700514 instance=ExtResource("4_p57ef")]
+position = Vector2(19, 22)

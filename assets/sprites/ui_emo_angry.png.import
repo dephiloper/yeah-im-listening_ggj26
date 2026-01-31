@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clwjwylxujvt8"
-path="res://.godot/imported/bg.png-c77278129744470f7e66ac3bb62c4cd4.ctex"
+uid="uid://bsvx64mj84m6i"
+path="res://.godot/imported/ui_emo_angry.png-7e676971f3d6ca9c1b8c52e89fcd83e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bg.png"
-dest_files=["res://.godot/imported/bg.png-c77278129744470f7e66ac3bb62c4cd4.ctex"]
+source_file="res://assets/sprites/ui_emo_angry.png"
+dest_files=["res://.godot/imported/ui_emo_angry.png-7e676971f3d6ca9c1b8c52e89fcd83e7.ctex"]
 
 [params]
 

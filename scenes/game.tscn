@@ -21,15 +21,15 @@ texture = ExtResource("2_iywne")
 [node name="Character" type="Node2D" parent="." unique_id=1542768464]
 
 [node name="Npc" type="Sprite2D" parent="Character" unique_id=1903752026]
-position = Vector2(216, 121)
+position = Vector2(259, 121)
 texture = ExtResource("3_vtaks")
 
 [node name="Table" type="Sprite2D" parent="Character" unique_id=1796388759]
-position = Vector2(190, 237)
+position = Vector2(229, 235)
 texture = ExtResource("4_kvpfn")
 
 [node name="Player" type="Sprite2D" parent="Character" unique_id=207300153]
-position = Vector2(153, 227)
+position = Vector2(193, 231)
 texture = ExtResource("5_dinhu")
 
 [node name="UI" type="Node2D" parent="." unique_id=1041925857]

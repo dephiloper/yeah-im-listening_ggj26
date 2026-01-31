@@ -10,8 +10,12 @@
 [ext_resource type="PackedScene" path="res://scenes/dialogue.tscn" id="4_p57ef"]
 [ext_resource type="Texture2D" uid="uid://df3c4lqd75eit" path="res://assets/sprites/player.png" id="5_dinhu"]
 [ext_resource type="Script" uid="uid://dbj7wfuarcld4" path="res://src/distraction_manager.gd" id="8_kvpfn"]
-[ext_resource type="Script" uid="uid://cilcolusm6oa4" path="res://src/distraction.gd" id="9_kvpfn"]
-[ext_resource type="Texture2D" uid="uid://bdt0yv607ho6m" path="res://assets/sprites/cat.png" id="10_kvuet"]
+[ext_resource type="PackedScene" uid="uid://bvhr1fkliq18f" path="res://scenes/distraction.tscn" id="9_dinhu"]
+[ext_resource type="AudioStream" uid="uid://demj4yey8fb7r" path="res://assets/audio/catpurr[1].wav" id="10_kvuet"]
+[ext_resource type="AudioStream" uid="uid://rkb5u5dk0kgk" path="res://assets/audio/wasp[1].wav" id="12_ir15t"]
+[ext_resource type="AudioStream" uid="uid://j5ruhvia18h6" path="res://assets/audio/coffeegrinder[1].wav" id="12_trtic"]
+[ext_resource type="AudioStream" uid="uid://cq34wpygxd547" path="res://assets/audio/backgroundmusic_loop.wav" id="13_kvuet"]
+[ext_resource type="AudioStream" uid="uid://dhis1ca47hx0g" path="res://assets/audio/cafeteria[1].wav" id="14_ca42v"]
 
 [node name="Game" type="Node2D" unique_id=543216258]
 script = ExtResource("1_uwrxv")
@@ -34,6 +38,8 @@ texture = ExtResource("4_kvpfn")
 position = Vector2(153, 227)
 texture = ExtResource("5_dinhu")
 
+[node name="AudioListener2D" type="AudioListener2D" parent="Character/Player" unique_id=943734494]
+
 [node name="UI" type="Node2D" parent="." unique_id=1041925857]
 
 [node name="Sprite2D" type="Sprite2D" parent="UI" unique_id=64126092]
@@ -53,33 +59,38 @@ unique_name_in_owner = true
 wait_time = 5.0
 one_shot = true
 
-[node name="Distraction" type="Sprite2D" parent="DistractionManager" unique_id=2064987961]
+[node name="Distraction" parent="DistractionManager" unique_id=959290655 instance=ExtResource("9_dinhu")]
 position = Vector2(436, 157)
-texture = ExtResource("10_kvuet")
-script = ExtResource("9_kvpfn")
-distraction_id = "cat"
-min_value = 45
-max_value = 135
+distraction_sound = ExtResource("10_kvuet")
 
-[node name="Distraction2" type="Sprite2D" parent="DistractionManager" unique_id=1940495503]
-modulate = Color(1, 0, 1, 1)
-position = Vector2(69, 109)
-scale = Vector2(0.3828125, 0.3828125)
+[node name="Distraction2" parent="DistractionManager" unique_id=535312921 instance=ExtResource("9_dinhu")]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(380, 76)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_lbhrr")
-script = ExtResource("9_kvpfn")
-distraction_id = "fly"
-min_value = 225
-max_value = 315
+distraction_sound = ExtResource("12_ir15t")
+distraction_id = "wasp"
 
-[node name="Distraction3" type="Sprite2D" parent="DistractionManager" unique_id=828960881]
+[node name="Distraction3" parent="DistractionManager" unique_id=1574276326 instance=ExtResource("9_dinhu")]
 modulate = Color(1, 1, 0, 1)
-position = Vector2(282, 58.999992)
-scale = Vector2(0.3828125, 0.3828125)
+position = Vector2(47.00003, 122)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_lbhrr")
-script = ExtResource("9_kvpfn")
+distraction_sound = ExtResource("12_trtic")
 distraction_id = "coffee"
-min_value = 135
-max_value = 225
+
+[node name="Distraction4" parent="DistractionManager" unique_id=1800890280 instance=ExtResource("9_dinhu")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(519, 233)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_lbhrr")
+distraction_sound = ExtResource("14_ca42v")
+distraction_id = "cafeteria"
 
 [node name="Dialogue" parent="." unique_id=292700514 instance=ExtResource("4_p57ef")]
 position = Vector2(19, 22)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=275854299]
+stream = ExtResource("13_kvuet")
+volume_db = -19.614
+autoplay = true

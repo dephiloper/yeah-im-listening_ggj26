@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bvhr1fkliq18f"]
+
+[ext_resource type="Texture2D" uid="uid://bdt0yv607ho6m" path="res://assets/sprites/cat.png" id="1_huxmp"]
+[ext_resource type="Script" uid="uid://cilcolusm6oa4" path="res://src/distraction.gd" id="2_iaghv"]
+
+[node name="Distraction" type="Sprite2D" unique_id=959290655]
+texture = ExtResource("1_huxmp")
+script = ExtResource("2_iaghv")
+distraction_id = "cat"
+min_value = 45
+max_value = 135
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1361088284]
+unique_name_in_owner = true
+bus = &"Distraction"

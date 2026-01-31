@@ -4,6 +4,7 @@ var distraction_pool: Array = []
 
 var active_distraction: Distraction = null
 var _last_distraction_id: String = ""
+var last_distraction_window: Array = []
 
 @onready var distraction_timer: Timer = %Timer
 
@@ -30,15 +31,25 @@ func _process(_delta: float) -> void:
 		)
 
 		var distraction: Distraction = no_duplicate_distraction_pool.pick_random().duplicate()
+		if not distraction:
+			printerr("error: no available distractions")
+			return
+
 		add_child(distraction)
+
+		# wait for one frame so distraction is initialized
+		await get_tree().process_frame
+
+		# making the last distraction window available
+		last_distraction_window = [distraction.min_value, distraction.max_value]
+
+		# last_distraction_window
 		active_distraction = distraction
 		distraction_timer.start()
-		print("new distraction started '%s'" % distraction.distraction_id)
 
 
 func _on_distraction_timer_timeout() -> void:
 	if active_distraction:
 		_last_distraction_id = active_distraction.distraction_id
-		print("last distraction id:", _last_distraction_id)
 		active_distraction.queue_free()
 		active_distraction = null

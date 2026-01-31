@@ -7,8 +7,6 @@
 texture = ExtResource("1_huxmp")
 script = ExtResource("2_iaghv")
 distraction_id = "cat"
-min_value = 45
-max_value = 135
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1361088284]
 unique_name_in_owner = true

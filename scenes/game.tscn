@@ -2,20 +2,19 @@
 
 [ext_resource type="Script" uid="uid://dkixvfx3bhdnu" path="res://src/game.gd" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://clwjwylxujvt8" path="res://assets/sprites/bg.png" id="2_iywne"]
-[ext_resource type="Texture2D" uid="uid://oveupsvbkojy" path="res://assets/sprites/icon.svg" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://cpdu6h6wg3ark" path="res://scenes/knob.tscn" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://0is5ffc1bwm5" path="res://assets/sprites/ui_panel.png" id="3_p57ef"]
 [ext_resource type="Texture2D" uid="uid://cdi27j267cciy" path="res://assets/sprites/npc.png" id="3_vtaks"]
 [ext_resource type="Texture2D" uid="uid://cigl0jjc4kuiu" path="res://assets/sprites/table.png" id="4_kvpfn"]
-[ext_resource type="PackedScene" path="res://scenes/dialogue.tscn" id="4_p57ef"]
+[ext_resource type="Script" path="res://src/npc.gd" id="4_kvuet"]
+[ext_resource type="PackedScene" uid="uid://bwgmaf870jxmy" path="res://scenes/dialogue.tscn" id="4_p57ef"]
 [ext_resource type="Texture2D" uid="uid://df3c4lqd75eit" path="res://assets/sprites/player.png" id="5_dinhu"]
 [ext_resource type="Script" uid="uid://dbj7wfuarcld4" path="res://src/distraction_manager.gd" id="8_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://bvhr1fkliq18f" path="res://scenes/distraction.tscn" id="9_dinhu"]
-[ext_resource type="AudioStream" uid="uid://demj4yey8fb7r" path="res://assets/audio/catpurr[1].wav" id="10_kvuet"]
 [ext_resource type="AudioStream" uid="uid://rkb5u5dk0kgk" path="res://assets/audio/wasp[1].wav" id="12_ir15t"]
-[ext_resource type="AudioStream" uid="uid://j5ruhvia18h6" path="res://assets/audio/coffeegrinder[1].wav" id="12_trtic"]
-[ext_resource type="AudioStream" uid="uid://cq34wpygxd547" path="res://assets/audio/backgroundmusic_loop.wav" id="13_kvuet"]
-[ext_resource type="AudioStream" uid="uid://dhis1ca47hx0g" path="res://assets/audio/cafeteria[1].wav" id="14_ca42v"]
+[ext_resource type="AudioStream" uid="uid://demj4yey8fb7r" path="res://assets/audio/catpurr[1].wav" id="12_trtic"]
+[ext_resource type="AudioStream" uid="uid://cuwth4178x08w" path="res://assets/audio/crying_bb[1].wav" id="15_ca42v"]
+[ext_resource type="AudioStream" uid="uid://j5ruhvia18h6" path="res://assets/audio/coffeegrinder[1].wav" id="16_rysoc"]
 
 [node name="Game" type="Node2D" unique_id=543216258]
 script = ExtResource("1_uwrxv")
@@ -29,6 +28,8 @@ texture = ExtResource("2_iywne")
 [node name="Npc" type="Sprite2D" parent="Character" unique_id=1903752026]
 position = Vector2(216, 121)
 texture = ExtResource("3_vtaks")
+script = ExtResource("4_kvuet")
+time_spent_intense_distraction_threshold = 3.0
 
 [node name="Table" type="Sprite2D" parent="Character" unique_id=1796388759]
 position = Vector2(190, 237)
@@ -37,8 +38,6 @@ texture = ExtResource("4_kvpfn")
 [node name="Player" type="Sprite2D" parent="Character" unique_id=207300153]
 position = Vector2(153, 227)
 texture = ExtResource("5_dinhu")
-
-[node name="AudioListener2D" type="AudioListener2D" parent="Character/Player" unique_id=943734494]
 
 [node name="UI" type="Node2D" parent="." unique_id=1041925857]
 
@@ -60,37 +59,28 @@ wait_time = 5.0
 one_shot = true
 
 [node name="Distraction" parent="DistractionManager" unique_id=959290655 instance=ExtResource("9_dinhu")]
-position = Vector2(436, 157)
-distraction_sound = ExtResource("10_kvuet")
-
-[node name="Distraction2" parent="DistractionManager" unique_id=535312921 instance=ExtResource("9_dinhu")]
-modulate = Color(0, 0, 1, 1)
-position = Vector2(380, 76)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_lbhrr")
-distraction_sound = ExtResource("12_ir15t")
-distraction_id = "wasp"
-
-[node name="Distraction3" parent="DistractionManager" unique_id=1574276326 instance=ExtResource("9_dinhu")]
-modulate = Color(1, 1, 0, 1)
-position = Vector2(47.00003, 122)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_lbhrr")
+position = Vector2(320, 51)
 distraction_sound = ExtResource("12_trtic")
+
+[node name="Distraction2" parent="DistractionManager" unique_id=1288420568 instance=ExtResource("9_dinhu")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(57, 161)
+distraction_sound = ExtResource("16_rysoc")
 distraction_id = "coffee"
 
-[node name="Distraction4" parent="DistractionManager" unique_id=1800890280 instance=ExtResource("9_dinhu")]
-modulate = Color(1, 0, 0, 1)
-position = Vector2(519, 233)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_lbhrr")
-distraction_sound = ExtResource("14_ca42v")
-distraction_id = "cafeteria"
+[node name="Distraction3" parent="DistractionManager" unique_id=121685310 instance=ExtResource("9_dinhu")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(473, 181)
+distraction_sound = ExtResource("15_ca42v")
+distraction_id = "baby"
+
+[node name="Distraction4" parent="DistractionManager" unique_id=1828121342 instance=ExtResource("9_dinhu")]
+modulate = Color(0, 0.34509805, 1, 1)
+position = Vector2(548, 54)
+distraction_sound = ExtResource("12_ir15t")
+distraction_id = "wasp"
 
 [node name="Dialogue" parent="." unique_id=292700514 instance=ExtResource("4_p57ef")]
 position = Vector2(19, 22)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=275854299]
-stream = ExtResource("13_kvuet")
-volume_db = -19.614
-autoplay = true
+[connection signal="distraction_too_long" from="Character/Npc" to="Dialogue" method="_on_npc_distraction_too_long"]

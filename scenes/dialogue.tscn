@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cix0ox0to3fvl"]
+[gd_scene format=3 uid="uid://bwgmaf870jxmy"]
 
 [ext_resource type="Script" uid="uid://btxeu53gdvu2l" path="res://src/dialogue.gd" id="1_jwyou"]
 [ext_resource type="Texture2D" uid="uid://dgridweynpaod" path="res://assets/sprites/ui_speechbubble.png" id="2_3n4vj"]

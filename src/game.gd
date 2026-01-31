@@ -1,11 +1,12 @@
 extends Node2D
 
+@onready var _knob := %Knob
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass  # Replace with function body.
+	_knob.value_changed.connect(_on_knob_value_changed)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	%Sprite2D.rotation += delta * 1.0
+func _on_knob_value_changed(id: int, value: int) -> void:
+	print("Knob %d value changed to: %d" % [id, value])

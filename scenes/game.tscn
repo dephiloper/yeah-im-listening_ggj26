@@ -1,17 +1,11 @@
 [gd_scene format=3 uid="uid://bqvy62e2koycj"]
 
 [ext_resource type="Script" uid="uid://dkixvfx3bhdnu" path="res://src/game.gd" id="1_uwrxv"]
-[ext_resource type="Texture2D" uid="uid://e7vryl1b4vyj" path="res://icon.svg" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://cpdu6h6wg3ark" path="res://scenes/knob.tscn" id="3_lnu2h"]
 
 [node name="Game" type="Node2D" unique_id=543216258]
 script = ExtResource("1_uwrxv")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2137477964]
-unique_name_in_owner = true
-position = Vector2(587, 143.00003)
-scale = Vector2(0.4921875, 0.4921875)
-texture = ExtResource("2_yqjtg")
-
 [node name="Knob" parent="." unique_id=1175242466 instance=ExtResource("3_lnu2h")]
+unique_name_in_owner = true
 position = Vector2(580, 532)

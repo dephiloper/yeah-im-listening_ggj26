@@ -1,4 +1,4 @@
-class_name Distraction extends Sprite2D
+class_name Distraction extends AnimatedSprite2D
 
 @export var distraction_sound: AudioStream
 @export var distraction_id: String
@@ -29,10 +29,11 @@ func _ready() -> void:
 	_game = find_parent("Game")
 	_game.game_ready.connect(_on_knobs_ready)
 
-	position = Vector2(
-		randf_range(MIN_X_CONSTRAINT, get_viewport_rect().size.x - MAX_X_CONSTRAINT),
-		randf_range(MIN_Y_CONSTRAINT, get_viewport_rect().size.y - MAX_Y_CONSTRAINT)
-	)
+	if is_moving:
+		position = Vector2(
+			randf_range(MIN_X_CONSTRAINT, get_viewport_rect().size.x - MAX_X_CONSTRAINT),
+			randf_range(MIN_Y_CONSTRAINT, get_viewport_rect().size.y - MAX_Y_CONSTRAINT)
+		)
 
 	var new_distraction_window := find_new_distraction_window()
 	min_value = new_distraction_window[0]
@@ -46,9 +47,9 @@ func _ready() -> void:
 		distraction_sound_player.stream = distraction_sound
 		distraction_sound_player.play()
 
-	print(
-		"new distraction '%s' with range between %d and %d" % [distraction_id, min_value, max_value]
-	)
+	# print(
+	# 	"new distraction '%s' with range between %d and %d" % [distraction_id, min_value, max_value]
+	# )
 
 
 func _process(delta: float) -> void:
@@ -67,7 +68,6 @@ func _process(delta: float) -> void:
 		)
 		if not is_inside_screen(random_point):
 			_target_position = random_point
-			print("new target position found")
 		else:
 			_target_position = Vector2.ZERO
 

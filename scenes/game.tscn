@@ -194,11 +194,13 @@ wait_time = 10.0
 one_shot = true
 
 [node name="Distraction" parent="DistractionManager" unique_id=959290655 instance=ExtResource("9_dinhu")]
-position = Vector2(320, 51)
+position = Vector2(539, 182)
 sprite_frames = SubResource("SpriteFrames_e1j6l")
 autoplay = "default"
 distraction_sound = ExtResource("12_trtic")
 is_moving = true
+min_bounds = Vector2(360, 180)
+max_bounds = Vector2(540, 250)
 
 [node name="Distraction2" parent="DistractionManager" unique_id=1288420568 instance=ExtResource("9_dinhu")]
 modulate = Color(1, 0, 0, 1)
@@ -220,11 +222,14 @@ distraction_id = "baby"
 
 [node name="Distraction4" parent="DistractionManager" unique_id=1828121342 instance=ExtResource("9_dinhu")]
 modulate = Color(0, 0.34509805, 1, 1)
-position = Vector2(548, 54)
+position = Vector2(341, 18)
 sprite_frames = SubResource("SpriteFrames_sww3w")
+flip_h = true
 distraction_sound = ExtResource("12_ir15t")
 distraction_id = "wasp"
 is_moving = true
+min_bounds = Vector2(350, 18)
+max_bounds = Vector2(620, 240)
 
 [node name="Distraction5" parent="DistractionManager" unique_id=797569358 instance=ExtResource("9_dinhu")]
 position = Vector2(505, 235)
@@ -243,12 +248,14 @@ distraction_sound = ExtResource("14_ca42v")
 distraction_id = "cafeteria"
 
 [node name="Distraction7" parent="DistractionManager" unique_id=1613454640 instance=ExtResource("9_dinhu")]
-position = Vector2(382, 243)
+position = Vector2(392, 238)
 sprite_frames = SubResource("SpriteFrames_qouja")
 autoplay = "default"
 distraction_sound = ExtResource("28_sgl2t")
 distraction_id = "cat_hiss"
 is_moving = true
+min_bounds = Vector2(360, 180)
+max_bounds = Vector2(540, 250)
 
 [node name="Dialogue" parent="." unique_id=292700514 instance=ExtResource("4_p57ef")]
 position = Vector2(19, 22)

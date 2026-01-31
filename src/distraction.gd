@@ -7,10 +7,8 @@ class_name Distraction extends AnimatedSprite2D
 const DISTRACTION_WINDOW_SIZE := 90
 const MARGIN := 50
 
-@export var min_x: int = 0
-@export var max_x: int = 640
-@export var min_y: int = 0
-@export var max_y: int = 360
+@export var min_bounds: Vector2 = Vector2(0, 0)
+@export var max_bounds: Vector2 = Vector2(640, 360)
 
 var min_value: int = 90
 var max_value: int = 270
@@ -30,7 +28,9 @@ func _ready() -> void:
 	_game.game_ready.connect(_on_knobs_ready)
 
 	if is_moving:
-		position = Vector2(randf_range(min_x, max_x), randf_range(min_y, max_y))
+		position = Vector2(
+			randf_range(min_bounds.x, max_bounds.x), randf_range(min_bounds.y, max_bounds.y)
+		)
 
 	var new_distraction_window := find_new_distraction_window()
 	min_value = new_distraction_window[0]
@@ -74,6 +74,11 @@ func _process(delta: float) -> void:
 	_velocity += target_velocity * 0.1
 	_velocity = _velocity.normalized()
 	position += _velocity * delta * 32
+
+	if _velocity.x > 0.2:
+		flip_h = true
+	elif _velocity.x < -0.2:
+		flip_h = false
 
 	if position.distance_to(_target_position) < 64:
 		_target_position = Vector2.ZERO
@@ -131,8 +136,8 @@ func _on_knob_value_changed(id: int, value: int) -> void:
 
 func is_inside_screen(random_point: Vector2) -> bool:
 	return (
-		random_point.x < min_x
-		or random_point.x > max_x
-		or random_point.y < min_y
-		or random_point.y > max_y
+		random_point.x < min_bounds.x
+		or random_point.x > max_bounds.x
+		or random_point.y < min_bounds.y
+		or random_point.y > max_bounds.y
 	)

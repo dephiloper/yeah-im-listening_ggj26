@@ -4,6 +4,10 @@ signal value_changed(id: int, value: int)
 
 @export var id: int = 0
 @onready var _main: Sprite2D = %Main
+@onready var _audio_player: AudioStreamPlayer = %AudioStreamPlayer
+
+var _previous_rotation_value: float = 0.0
+var _value_changed_changed_counter = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,3 +28,12 @@ func _process(delta: float) -> void:
 
 	# normalize the rotation value to be between 0 and 360
 	value_changed.emit(id, rotation_value)
+
+	if _previous_rotation_value != _main.rotation_degrees:
+		_value_changed_changed_counter += 1
+
+	if _value_changed_changed_counter >= 15:
+		_audio_player.play()
+		_value_changed_changed_counter = 0
+
+	_previous_rotation_value = _main.rotation_degrees

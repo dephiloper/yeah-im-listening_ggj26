@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://bvhr1fkliq18f"]
 
-[ext_resource type="Texture2D" uid="uid://bdt0yv607ho6m" path="res://assets/sprites/cat.png" id="1_huxmp"]
 [ext_resource type="Script" uid="uid://cilcolusm6oa4" path="res://src/distraction.gd" id="2_iaghv"]
 
-[node name="Distraction" type="Sprite2D" unique_id=959290655]
-texture = ExtResource("1_huxmp")
+[node name="Distraction" type="AnimatedSprite2D" unique_id=797569358]
+z_index = -1
 script = ExtResource("2_iaghv")
 distraction_id = "cat"
 

@@ -15,20 +15,23 @@ texture = ExtResource("2_iywne")
 
 [node name="Knob" parent="." unique_id=1175242466 instance=ExtResource("3_lnu2h")]
 unique_name_in_owner = true
-position = Vector2(311, 244)
+position = Vector2(311, 300)
 
 [node name="Distractions" type="Node" parent="." unique_id=1291611955]
+unique_name_in_owner = true
 
 [node name="VisualDistraction" type="Sprite2D" parent="Distractions" unique_id=1940495503]
 modulate = Color(1, 0, 1, 1)
-position = Vector2(518, 84)
+position = Vector2(557.5, 44.5)
+scale = Vector2(0.3828125, 0.3828125)
 texture = ExtResource("3_lbhrr")
 script = ExtResource("4_iywne")
 max_value = 120
 
 [node name="VisualDistraction2" type="Sprite2D" parent="Distractions" unique_id=44159637]
 modulate = Color(2.0214916e-06, 0.7337821, 0.52568334, 1)
-position = Vector2(106, 81)
+position = Vector2(66.5, 41.5)
+scale = Vector2(0.3828125, 0.3828125)
 texture = ExtResource("3_lbhrr")
 script = ExtResource("4_iywne")
 min_value = 250

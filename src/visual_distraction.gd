@@ -9,7 +9,7 @@ var _game: Game
 
 func _ready() -> void:
 	_game = find_parent("Game")
-	_game.knobs_ready.connect(_on_knobs_ready)
+	_game.game_ready.connect(_on_knobs_ready)
 
 
 func _on_knobs_ready() -> void:
@@ -23,5 +23,9 @@ func _on_knob_value_changed(id: int, value: int) -> void:
 		var dist: float = abs(float(value - center_value))
 
 		var normalized_distance := dist / value_range
+
+		# if the normalized distance is smaller than 0.2 you hit a sweet spot
+		if normalized_distance < 0.3:
+			normalized_distance = 0.0
 
 		modulate.a = normalized_distance

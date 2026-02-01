@@ -318,7 +318,7 @@ max_bounds = Vector2(540, 250)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2087598050]
 stream = ExtResource("13_kvuet")
-volume_db = -20.0
+volume_db = -10.0
 autoplay = true
 bus = &"Music"
 script = ExtResource("35_twgab")

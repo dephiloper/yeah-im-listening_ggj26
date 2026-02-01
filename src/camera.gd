@@ -13,12 +13,12 @@ func _ready() -> void:
 	_starting_position = global_position
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if _game and _game.distraction_manager and _game.distraction_manager.active_distraction:
 		if _game.distraction_manager.active_distraction.distraction_value > 0.8:
-			_accumulated_distraction = min(1.0, _accumulated_distraction + (0.3 * _delta))
+			_accumulated_distraction = min(1.0, _accumulated_distraction + (0.3 * delta))
 		else:
-			_accumulated_distraction = max(0.0, _accumulated_distraction - (0.3 * _delta))
+			_accumulated_distraction = max(0.0, _accumulated_distraction - (0.3 * delta))
 
 		zoom = Vector2(
 			MIN_ZOOM + (_accumulated_distraction * (MAX_ZOOM - MIN_ZOOM)),

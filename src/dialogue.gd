@@ -16,6 +16,7 @@ var option_prefix: String = "[?]"
 var tween: Tween
 var current_line_index: int = 0
 
+# for now to simplify don't use distracted lines
 var distracted_lines: Array[PackedStringArray]
 var current_distracted_text: String
 var is_very_distracted: bool = false
@@ -57,9 +58,7 @@ func get_text() -> String:
 	var shake_offset_lvl = max_shake_offset * distraction_intesity
 
 	var active_text: String
-	if is_very_distracted:
-		active_text = current_distracted_text
-	elif is_in_branch and current_branch_index >= 0 and current_branch_index < current_branch_lines.size():
+	if is_in_branch and current_branch_index >= 0 and current_branch_index < current_branch_lines.size():
 		active_text = current_branch_lines[current_branch_index]
 	elif current_line_index < dialogue_entries.size():
 		active_text = dialogue_entries[current_line_index].text
@@ -67,16 +66,6 @@ func get_text() -> String:
 		active_text = ""
 
 	return "[shake rate=%s level=%s connected=1]%s[/shake]" % [shake_rate, shake_offset_lvl, active_text]
-
-func get_distracted_line() -> String:
-	var lines: PackedStringArray
-	if (distraction_level < distracted_lines.size()):
-		lines = distracted_lines[distraction_level]
-	else:
-		lines = distracted_lines[distracted_lines.size() - 1]
-
-	var line_index = randf_range(0, lines.size())
-	return lines[line_index]
 
 func load_dialogue_entries() -> Array[DialogueEntry]:
 	var file = FileAccess.open("res://dialogues/test.txt", FileAccess.READ)
@@ -139,11 +128,6 @@ func scroll_text(text: String) -> void:
 	tween.tween_callback(scroll_next_line).set_delay(delay_between_lines)
 
 func scroll_next_line() -> void:
-	if is_very_distracted:
-		current_distracted_text = get_distracted_line()
-		scroll_text(current_distracted_text)
-		return
-
 	if is_in_branch:
 		current_branch_index += 1
 		if current_branch_index < current_branch_lines.size():
@@ -214,22 +198,10 @@ func select_option(option_index: int) -> void:
 		advance_to_next_entry()
 
 func _on_npc_distraction_too_long(level: int) -> void:
-	if waiting_for_option:
-		return
-	if !is_very_distracted:
-		is_very_distracted = true
-		self.distraction_level = level
-		current_distracted_text = get_distracted_line()
-		scroll_text(current_distracted_text)
-		waiting_for_option = false
-		hide_dialogue_options()
+	return
 
 func _on_npc_distraction_stopped() -> void:
-	is_very_distracted = false
-	# bug happens here where when distraction ends and we go back to a dialogue option,
-	# the text only shows up up to the number of characters the previous distraction text had
-	# fix for now by not making it possible to trigger distraction texts while waiting on an option
-	scroll_next_line()
+	return
 
 func _select_option_1() -> void:
 	select_option(0)

@@ -1,6 +1,6 @@
-I’m very good thank you!
-Just wondering if I should get something to eat with my coffee. 
-Those chocolate chip cookies looked really good. 
+[?] Hey, how are you doing?
+[?] How are things?
+Good, thank you!
 This is one of my favourite places around here, it’s so cozy. 
 Have you been here before?
 [?] Yes this is one of my favourites too!#correct

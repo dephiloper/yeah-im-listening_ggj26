@@ -8,6 +8,8 @@ var last_distraction_window: Array = []
 
 @onready var distraction_timer: Timer = %Timer
 
+signal on_distraction_start
+
 
 func _ready() -> void:
 	var children := get_children()
@@ -46,6 +48,7 @@ func _process(_delta: float) -> void:
 		# last_distraction_window
 		active_distraction = distraction
 		distraction_timer.start()
+		on_distraction_start.emit()
 
 
 func _on_distraction_timer_timeout() -> void:

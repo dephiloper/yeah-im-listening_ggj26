@@ -25,6 +25,7 @@ func _process(delta: float) -> void:
 		if distraction_manager.active_distraction.distraction_value >= intense_distraction_threshold:
 			_low_distraction_duration = 0
 			_intense_distraction_duration += delta
+			
 			if _intense_distraction_duration >= time_spent_distraction_threshold:
 				print("distracted for too long! %s" % distraction_level)
 				if emote.texture == happy_emote:
@@ -37,8 +38,6 @@ func _process(delta: float) -> void:
 				_intense_distraction_duration = 0
 		else:
 			_increment_low_distraction(delta)
-	else:
-		_increment_low_distraction(delta)
 
 func _set_emote(new_emote: Texture2D) -> void:
 	emote.texture = new_emote

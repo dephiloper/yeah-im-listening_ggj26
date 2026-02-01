@@ -39,6 +39,8 @@
 [ext_resource type="Texture2D" uid="uid://cbms5mi8t2b32" path="res://assets/sprites/dog3.png" id="29_02fa5"]
 [ext_resource type="Texture2D" uid="uid://casboiontg07e" path="res://assets/sprites/dog4.png" id="30_nepv3"]
 [ext_resource type="Script" uid="uid://dh2xkvgt187" path="res://src/background_music_player.gd" id="35_twgab"]
+[ext_resource type="Texture2D" uid="uid://bkfv6nra1fu3h" path="res://assets/sprites/speaker.png" id="37_8ool0"]
+[ext_resource type="AudioStream" uid="uid://dq1ld5qbi4jt1" path="res://assets/audio/annoymusic[2].wav" id="38_pr1ej"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e1j6l"]
 animations = [{
@@ -156,6 +158,17 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("14_bt5mj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_05nbr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("37_8ool0")
 }],
 "loop": true,
 "name": &"default",
@@ -315,6 +328,14 @@ distraction_id = "cat_hiss"
 is_moving = true
 min_bounds = Vector2(360, 180)
 max_bounds = Vector2(540, 250)
+
+[node name="Distraction8" parent="DistractionManager" unique_id=954697108 instance=ExtResource("9_dinhu")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(338, 170)
+sprite_frames = SubResource("SpriteFrames_05nbr")
+autoplay = "default"
+distraction_sound = ExtResource("38_pr1ej")
+distraction_id = "boom"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2087598050]
 stream = ExtResource("13_kvuet")

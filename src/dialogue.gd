@@ -302,7 +302,12 @@ func _input(input_event):
 
 
 func _process_midi_info(midi_event: InputEventMIDI) -> void:
-	if not waiting_for_option:
+	if (
+		not waiting_for_option
+		or midi_event.pitch == 0
+		or midi_event.pitch < 48
+		or midi_event.pitch > 72
+	):
 		return
 
 	if midi_event.pitch < 59:

@@ -44,13 +44,11 @@ func _ready():
 
 func _input(input_event):
 	if input_event is InputEventMIDI:
-		_print_midi_info(input_event)
+		_process_midi_info(input_event)
 
 
-func _print_midi_info(midi_event):
+func _process_midi_info(midi_event: InputEventMIDI):
 	if midi_event.controller_number > 15 and midi_event.controller_number < 24:
-		print("Controller value: ", midi_event.controller_value)
-
 		if midi_event.controller_value == 1:
 			_midi_value += 1
 		elif midi_event.controller_value == 127:

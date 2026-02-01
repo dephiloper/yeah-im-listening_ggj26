@@ -259,3 +259,18 @@ func _select_option_2() -> void:
 
 func _select_option_3() -> void:
 	select_option(2)
+
+
+func _input(input_event):
+	if input_event is InputEventMIDI:
+		_process_midi_info(input_event)
+
+
+func _process_midi_info(midi_event: InputEventMIDI) -> void:
+	if not waiting_for_option:
+		return
+
+	if midi_event.pitch < 59:
+		_select_option_1()
+	if midi_event.pitch > 59:
+		_select_option_2()

@@ -3,11 +3,10 @@
 [ext_resource type="Script" uid="uid://btxeu53gdvu2l" path="res://src/dialogue.gd" id="1_jwyou"]
 [ext_resource type="Texture2D" uid="uid://dgridweynpaod" path="res://assets/sprites/ui_speechbubble.png" id="2_3n4vj"]
 
-[node name="Dialogue" type="Node2D" unique_id=292700514 node_paths=PackedStringArray("dialogue_options", "option_timer_container", "option_timer_bar")]
+[node name="Dialogue" type="Node2D" unique_id=292700514 node_paths=PackedStringArray("dialogue_options", "dialogue_box")]
 script = ExtResource("1_jwyou")
-dialogue_options = [NodePath(""), NodePath("")]
-option_timer_container = NodePath("")
-option_timer_bar = NodePath("")
+dialogue_options = [null, null]
+dialogue_box = NodePath("TextureRect")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1309504694]
 offset_right = 40.0

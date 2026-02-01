@@ -43,7 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://bkfv6nra1fu3h" path="res://assets/sprites/speaker.png" id="37_8ool0"]
 [ext_resource type="AudioStream" uid="uid://dq1ld5qbi4jt1" path="res://assets/audio/annoymusic[2].wav" id="38_pr1ej"]
 [ext_resource type="AudioStream" uid="uid://c5uvgxw8m6b0g" path="res://assets/audio/annoymusic[1].wav" id="40_05nbr"]
-[ext_resource type="AudioStream" uid="uid://4sfiy6hqjghu" path="res://assets/audio/ambulance.wav" id="41_0sl42"]
+[ext_resource type="AudioStream" uid="uid://4sfiy6hqjghu" path="res://assets/audio/ambulance[old].wav" id="41_0sl42"]
 [ext_resource type="Texture2D" uid="uid://mmdlpwvkwebm" path="res://assets/sprites/waiter.png" id="42_458eo"]
 [ext_resource type="AudioStream" uid="uid://hnae74cnmng7" path="res://assets/audio/waiter[1].wav" id="42_oaba0"]
 

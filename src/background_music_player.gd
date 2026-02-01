@@ -10,7 +10,6 @@ var _accumulated_distraction = 0.0
 
 
 func _process(delta: float) -> void:
-	print("bus count:", AudioServer.bus_count)
 	if _game and _game.distraction_manager and _game.distraction_manager.active_distraction:
 		if _game.distraction_manager.active_distraction.distraction_value > 0.8:
 			_accumulated_distraction = min(1.0, _accumulated_distraction + (0.3 * delta))

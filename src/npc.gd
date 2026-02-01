@@ -27,6 +27,7 @@ func _process(delta: float) -> void:
 			_intense_distraction_duration += delta
 			
 			if _intense_distraction_duration >= time_spent_distraction_threshold:
+				distraction_level += 1
 				print("distracted for too long! %s" % distraction_level)
 				if emote.texture == happy_emote:
 					_set_emote(normal_emote)
@@ -34,7 +35,6 @@ func _process(delta: float) -> void:
 					distraction_too_long.emit(distraction_level - distraction_level_angry_threshold)
 					_set_emote(angry_emote)
 
-				distraction_level += 1
 				_intense_distraction_duration = 0
 		else:
 			_increment_low_distraction(delta)
@@ -61,4 +61,6 @@ func _increment_low_distraction(delta: float) -> void:
 			_set_emote(happy_emote)
 
 		distraction_level -= 1
+		if distraction_level < 0:
+			distraction_level = 0
 		_low_distraction_duration = 0

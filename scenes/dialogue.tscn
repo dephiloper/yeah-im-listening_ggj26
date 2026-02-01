@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://btxeu53gdvu2l" path="res://src/dialogue.gd" id="1_jwyou"]
 [ext_resource type="Texture2D" uid="uid://dgridweynpaod" path="res://assets/sprites/ui_speechbubble.png" id="2_3n4vj"]
+[ext_resource type="PackedScene" uid="uid://cmumjajheonv0" path="res://scenes/dialogue_choice.tscn" id="3_bfpow"]
 
-[node name="Dialogue" type="Node2D" unique_id=292700514]
+[node name="Dialogue" type="Node2D" unique_id=292700514 node_paths=PackedStringArray("dialogue_options")]
 script = ExtResource("1_jwyou")
+dialogue_options = [NodePath("Button"), NodePath("Button2"), NodePath("Button3")]
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1309504694]
 offset_right = 40.0
@@ -31,3 +33,29 @@ bbcode_enabled = true
 text = "[color=black]Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. [/color]"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" parent="." unique_id=1086771891 instance=ExtResource("3_bfpow")]
+offset_left = 2.0
+offset_top = 183.0
+offset_right = 185.0
+offset_bottom = 234.0
+
+[node name="Button2" parent="." unique_id=1820461624 instance=ExtResource("3_bfpow")]
+offset_left = 229.0
+offset_top = 183.0
+offset_right = 412.0
+offset_bottom = 234.0
+
+[node name="Button3" parent="." unique_id=52556015 instance=ExtResource("3_bfpow")]
+offset_left = 455.0
+offset_top = 183.0
+offset_right = 638.0
+offset_bottom = 234.0
+
+[connection signal="button_down" from="Button" to="." method="_select_option_1"]
+[connection signal="button_down" from="Button2" to="." method="_select_option_2"]
+[connection signal="button_down" from="Button3" to="." method="_select_option_3"]
+
+[editable path="Button"]
+[editable path="Button2"]
+[editable path="Button3"]

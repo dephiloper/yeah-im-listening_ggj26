@@ -269,4 +269,6 @@ autoplay = true
 [node name="Dialogue" parent="." unique_id=292700514 instance=ExtResource("4_p57ef")]
 position = Vector2(19, 22)
 
+[connection signal="distraction_stopped" from="Character/Npc" to="Dialogue" method="_on_npc_distraction_stopped"]
+[connection signal="distraction_too_long" from="Character/Npc" to="Dialogue" method="_on_npc_distraction_too_long"]
 [connection signal="on_distraction_start" from="DistractionManager" to="Character/Player" method="_on_distraction_manager_on_distraction_start"]

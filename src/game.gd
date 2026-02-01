@@ -14,7 +14,3 @@ func _ready() -> void:
 
 	is_ready = true
 	game_ready.emit()
-
-# func _process(_delta: float) -> void:
-# 	if _distraction_manager and _distraction_manager.active_distraction:
-# 		print("distraction_value %s" % _distraction_manager.active_distraction.distraction_value)

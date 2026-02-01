@@ -17,6 +17,8 @@ var correct_tag: String = "#correct"
 @export var option_timer_container: ColorRect
 @export var option_timer_bar: ColorRect
 
+@export var fade: ColorRect
+
 var tween: Tween
 var current_line_index: int = 0
 
@@ -188,7 +190,7 @@ func scroll_next_line() -> void:
 func advance_to_next_entry() -> void:
 	if current_line_index >= dialogue_entries.size():
 		current_line_index = dialogue_entries.size() - 1
-		get_tree().change_scene_to_file("res://scenes/end.tscn")
+		fade_out()
 		return
 
 	var entry = dialogue_entries[current_line_index]
@@ -200,6 +202,14 @@ func advance_to_next_entry() -> void:
 
 	scroll_text(entry.text)
 
+func fade_out():
+	fade.visible = true
+	var fade_tween = create_tween()
+	fade_tween.tween_property(fade, "color:a", 1, 2)
+	fade_tween.tween_callback(load_end).set_delay(1)
+	
+func load_end():
+	get_tree().change_scene_to_file("res://scenes/end.tscn")
 
 func show_dialogue_options(options: Array[DialogueOption]) -> void:
 	distraction_manager.pause_distraction()
@@ -237,9 +247,9 @@ func select_option(option_index: int) -> void:
 	var selected_option = current_entry.options[option_index]
 
 	if selected_option.is_correct:
-		Global.correct_answers_count += 1
+		Global.add_correct_answer()
 	else:
-		Global.incorrect_answers_count += 1
+		Global.add_incorrect_answer()
 
 	if selected_option.branch_lines.size() > 0:
 		is_in_branch = true

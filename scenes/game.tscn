@@ -42,6 +42,10 @@
 [ext_resource type="Script" uid="uid://dh2xkvgt187" path="res://src/background_music_player.gd" id="35_twgab"]
 [ext_resource type="Texture2D" uid="uid://bkfv6nra1fu3h" path="res://assets/sprites/speaker.png" id="37_8ool0"]
 [ext_resource type="AudioStream" uid="uid://dq1ld5qbi4jt1" path="res://assets/audio/annoymusic[2].wav" id="38_pr1ej"]
+[ext_resource type="AudioStream" uid="uid://c5uvgxw8m6b0g" path="res://assets/audio/annoymusic[1].wav" id="40_05nbr"]
+[ext_resource type="AudioStream" uid="uid://4sfiy6hqjghu" path="res://assets/audio/ambulance.wav" id="41_0sl42"]
+[ext_resource type="Texture2D" uid="uid://mmdlpwvkwebm" path="res://assets/sprites/waiter.png" id="42_458eo"]
+[ext_resource type="AudioStream" uid="uid://3awo3fwoqe5c" path="res://assets/audio/waiter[1].wav" id="42_oaba0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_e1j6l"]
 animations = [{
@@ -170,6 +174,45 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("37_8ool0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pr1ej"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("37_8ool0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0sl42"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_bt5mj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_e1j6l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ssvqc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_458eo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("42_458eo")
 }],
 "loop": true,
 "name": &"default",
@@ -308,7 +351,7 @@ is_hovering = true
 min_bounds = Vector2(350, 18)
 max_bounds = Vector2(620, 240)
 
-[node name="Distraction5" parent="DistractionManager" unique_id=797569358 instance=ExtResource("9_dinhu")]
+[node name="Distraction5" parent="DistractionManager" unique_id=10735850 instance=ExtResource("9_dinhu")]
 position = Vector2(404, 170)
 sprite_frames = SubResource("SpriteFrames_qnb83")
 autoplay = "default"
@@ -335,11 +378,39 @@ max_bounds = Vector2(540, 250)
 
 [node name="Distraction8" parent="DistractionManager" unique_id=954697108 instance=ExtResource("9_dinhu")]
 modulate = Color(1, 1, 0, 1)
-position = Vector2(338, 170)
+position = Vector2(322, 82)
 sprite_frames = SubResource("SpriteFrames_05nbr")
 autoplay = "default"
 distraction_sound = ExtResource("38_pr1ej")
 distraction_id = "boom"
+
+[node name="Distraction9" parent="DistractionManager" unique_id=406121431 instance=ExtResource("9_dinhu")]
+position = Vector2(562, 35)
+sprite_frames = SubResource("SpriteFrames_pr1ej")
+autoplay = "default"
+flip_h = true
+distraction_sound = ExtResource("40_05nbr")
+distraction_id = "boom2"
+
+[node name="Distraction10" parent="DistractionManager" unique_id=797569358 instance=ExtResource("9_dinhu")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(300, 19.999994)
+rotation = -1.826455
+scale = Vector2(0.99999994, 0.99999994)
+sprite_frames = SubResource("SpriteFrames_0sl42")
+autoplay = "default"
+distraction_sound = ExtResource("41_0sl42")
+distraction_id = "ambulance"
+
+[node name="Distraction11" parent="DistractionManager" unique_id=33309606 instance=ExtResource("9_dinhu")]
+self_modulate = Color(1, 1, 1, 0.7176471)
+position = Vector2(384.99997, 185.99998)
+scale = Vector2(0.99999994, 0.99999994)
+sprite_frames = SubResource("SpriteFrames_458eo")
+autoplay = "default"
+distraction_sound = ExtResource("42_oaba0")
+distraction_id = "waiter"
+is_hovering = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2087598050]
 stream = ExtResource("13_kvuet")

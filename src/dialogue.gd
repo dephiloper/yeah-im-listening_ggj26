@@ -16,6 +16,7 @@ var correct_tag: String = "#correct"
 @export var dialogue_options: Array[Button]
 @export var option_timer_container: ColorRect
 @export var option_timer_bar: ColorRect
+@export var dialogue_box: TextureRect
 
 @export var fade: ColorRect
 
@@ -55,14 +56,20 @@ func _ready() -> void:
 	dialogue_entries = load_dialogue_entries()
 	distracted_lines = load_distracted_lines()
 	current_line_index = 0
-	hide_dialogue_options()
-	scroll_text(dialogue_entries[current_line_index].text)
 	timer_bar_original_width = option_timer_bar.size.x
+	dialogue_box.visible = false
 
+	var current_entry = dialogue_entries[current_line_index]
+	if current_entry.has_options():
+		show_dialogue_options(current_entry.options, false)
+		waiting_for_option = true
+	else:
+		hide_dialogue_options()
+		scroll_text(current_entry.text)
 
 func _process(delta: float) -> void:
 	rich_text_label.text = get_text()
-	if waiting_for_option:
+	if waiting_for_option && option_timer_container.visible:
 		time_since_option_start += delta
 		var ratio = clamp(time_since_option_start / time_option, 0.0, 1.0)
 		option_timer_bar.size.x = lerp(timer_bar_original_width, 0.0, ratio)
@@ -150,6 +157,7 @@ func load_distracted_lines() -> Array[PackedStringArray]:
 
 
 func scroll_text(text: String) -> void:
+	dialogue_box.visible = true
 	if tween:
 		tween.kill()
 
@@ -179,7 +187,7 @@ func scroll_next_line() -> void:
 
 	var current_entry = dialogue_entries[current_line_index]
 	if current_entry.has_options():
-		show_dialogue_options(current_entry.options)
+		show_dialogue_options(current_entry.options, true)
 		waiting_for_option = true
 		return
 
@@ -196,7 +204,7 @@ func advance_to_next_entry() -> void:
 	var entry = dialogue_entries[current_line_index]
 
 	if entry.text == "" and entry.has_options():
-		show_dialogue_options(entry.options)
+		show_dialogue_options(entry.options, true)
 		waiting_for_option = true
 		return
 
@@ -211,7 +219,7 @@ func fade_out():
 func load_end():
 	get_tree().change_scene_to_file("res://scenes/end.tscn")
 
-func show_dialogue_options(options: Array[DialogueOption]) -> void:
+func show_dialogue_options(options: Array[DialogueOption], show_timer: bool) -> void:
 	distraction_manager.pause_distraction()
 	for i in range(dialogue_options.size()):
 		if i < options.size():
@@ -219,7 +227,7 @@ func show_dialogue_options(options: Array[DialogueOption]) -> void:
 			dialogue_options[i].visible = true
 		else:
 			dialogue_options[i].visible = false
-	option_timer_container.visible = true
+	option_timer_container.visible = show_timer
 	option_timer_bar.size.x = timer_bar_original_width
 
 
@@ -260,7 +268,8 @@ func select_option(option_index: int) -> void:
 		current_line_index += 1
 		advance_to_next_entry()
 
-	distraction_manager.resume_distraction()
+	if current_line_index > 1:
+		distraction_manager.resume_distraction()
 
 
 func _on_npc_distraction_too_long(level: int) -> void:

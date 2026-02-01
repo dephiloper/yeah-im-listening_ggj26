@@ -2,32 +2,33 @@
 
 [ext_resource type="Script" uid="uid://dkixvfx3bhdnu" path="res://src/game.gd" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://clwjwylxujvt8" path="res://assets/sprites/bg.png" id="2_iywne"]
-[ext_resource type="Script" uid="uid://dq825dpwcrfx6" path="res://src/camera.gd" id="2_sgl2t"]
+[ext_resource type="Script" path="res://src/camera.gd" id="2_sgl2t"]
 [ext_resource type="PackedScene" uid="uid://cpdu6h6wg3ark" path="res://scenes/knob.tscn" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://0is5ffc1bwm5" path="res://assets/sprites/ui_panel.png" id="3_p57ef"]
 [ext_resource type="PackedScene" path="res://scenes/npc.tscn" id="3_trtic"]
 [ext_resource type="Texture2D" uid="uid://cigl0jjc4kuiu" path="res://assets/sprites/table.png" id="4_kvpfn"]
-[ext_resource type="PackedScene" uid="uid://bwgmaf870jxmy" path="res://scenes/dialogue.tscn" id="4_p57ef"]
+[ext_resource type="PackedScene" uid="uid://cix0ox0to3fvl" path="res://scenes/dialogue.tscn" id="4_p57ef"]
 [ext_resource type="Texture2D" uid="uid://yraqahiahigs" path="res://assets/sprites/player1.png" id="6_ca42v"]
 [ext_resource type="Script" path="res://src/protagonist.gd" id="6_sgl2t"]
 [ext_resource type="Texture2D" uid="uid://dg2ls2sifjyg6" path="res://assets/sprites/player2.png" id="7_wljb1"]
 [ext_resource type="Script" uid="uid://dbj7wfuarcld4" path="res://src/distraction_manager.gd" id="8_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://26y3eyefh7vb" path="res://assets/sprites/knob_hint.png" id="8_qouja"]
 [ext_resource type="Texture2D" uid="uid://brhbnd3l1xr8p" path="res://assets/sprites/player3.png" id="8_v2yb1"]
-[ext_resource type="PackedScene" uid="uid://bvhr1fkliq18f" path="res://scenes/distraction.tscn" id="9_dinhu"]
+[ext_resource type="PackedScene" path="res://scenes/distraction.tscn" id="9_dinhu"]
 [ext_resource type="Texture2D" uid="uid://08jm114jbwtr" path="res://assets/sprites/cat1.png" id="11_1kice"]
 [ext_resource type="Texture2D" uid="uid://b1k5jpvgahun" path="res://assets/sprites/cat2.png" id="12_5newe"]
 [ext_resource type="AudioStream" uid="uid://buj7dy07gpwb7" path="res://assets/audio/wasp[1].wav" id="12_ir15t"]
 [ext_resource type="AudioStream" uid="uid://demj4yey8fb7r" path="res://assets/audio/catpurr[1].wav" id="12_trtic"]
 [ext_resource type="Texture2D" uid="uid://dbcvxeos0yxjj" path="res://assets/sprites/cat3.png" id="13_37s47"]
 [ext_resource type="AudioStream" uid="uid://cq34wpygxd547" path="res://assets/audio/backgroundmusic_loop.wav" id="13_kvuet"]
+[ext_resource type="PackedScene" path="res://scenes/dialogue_options.tscn" id="13_m4url"]
 [ext_resource type="Texture2D" uid="uid://ehue4mbq8k5k" path="res://assets/sprites/noise_wave3.png" id="13_ssvqc"]
 [ext_resource type="Texture2D" uid="uid://dcf47u8xuc1nq" path="res://assets/sprites/cat4.png" id="14_bt5mj"]
 [ext_resource type="AudioStream" uid="uid://dhis1ca47hx0g" path="res://assets/audio/cafeteria[1].wav" id="14_ca42v"]
 [ext_resource type="Texture2D" uid="uid://dg7pxh0vpijat" path="res://assets/sprites/wasp.png" id="14_rysoc"]
 [ext_resource type="AudioStream" uid="uid://cuwth4178x08w" path="res://assets/audio/crying_bb[1].wav" id="15_ca42v"]
 [ext_resource type="Texture2D" uid="uid://c76prnxxmus3" path="res://assets/sprites/noise_wave1.png" id="16_bt5mj"]
-[ext_resource type="AudioStream" uid="uid://ce7bhiovdvm7m" path="res://assets/audio/coffeegrinder[1].wav" id="16_rysoc"]
+[ext_resource type="AudioStream" uid="uid://w0ew3a8gswy1" path="res://assets/audio/coffeegrinder[1].wav" id="16_rysoc"]
 [ext_resource type="Texture2D" uid="uid://c1k0t1gnyu66y" path="res://assets/sprites/noise_wave2.png" id="17_e1j6l"]
 [ext_resource type="Texture2D" uid="uid://ctuxb0ypg4ueg" path="res://assets/sprites/noise_annoying1.png" id="20_bhx41"]
 [ext_resource type="Texture2D" uid="uid://gbke7sqnr8nv" path="res://assets/sprites/noise_annoying2.png" id="21_qnb83"]
@@ -38,7 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://ub5r1gwnm4rk" path="res://assets/sprites/dog2.png" id="28_twgab"]
 [ext_resource type="Texture2D" uid="uid://cbms5mi8t2b32" path="res://assets/sprites/dog3.png" id="29_02fa5"]
 [ext_resource type="Texture2D" uid="uid://casboiontg07e" path="res://assets/sprites/dog4.png" id="30_nepv3"]
-[ext_resource type="Script" uid="uid://dh2xkvgt187" path="res://src/background_music_player.gd" id="35_twgab"]
+[ext_resource type="Script" path="res://src/background_music_player.gd" id="35_twgab"]
 [ext_resource type="Texture2D" uid="uid://bkfv6nra1fu3h" path="res://assets/sprites/speaker.png" id="37_8ool0"]
 [ext_resource type="AudioStream" uid="uid://dq1ld5qbi4jt1" path="res://assets/audio/annoymusic[2].wav" id="38_pr1ej"]
 
@@ -257,6 +258,9 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="DialogueOptions" parent="CanvasLayer/UI" unique_id=1544586262 instance=ExtResource("13_m4url")]
+layout_mode = 1
+
 [node name="DistractionManager" type="Node" parent="." unique_id=1291611955]
 unique_name_in_owner = true
 script = ExtResource("8_kvpfn")
@@ -344,7 +348,18 @@ autoplay = true
 bus = &"Music"
 script = ExtResource("35_twgab")
 
-[node name="Dialogue" parent="." unique_id=292700514 instance=ExtResource("4_p57ef")]
+[node name="Dialogue" parent="." unique_id=292700514 node_paths=PackedStringArray("dialogue_options", "option_timer_container", "option_timer_bar") instance=ExtResource("4_p57ef")]
 position = Vector2(19, 22)
+dialogue_options = [NodePath("../CanvasLayer/UI/DialogueOptions/Button"), NodePath("../CanvasLayer/UI/DialogueOptions/Button2")]
+option_timer_container = NodePath("../CanvasLayer/UI/DialogueOptions/ColorRect")
+option_timer_bar = NodePath("../CanvasLayer/UI/DialogueOptions/ColorRect/ColorRect")
 
+[connection signal="distraction_stopped" from="Character/Npc" to="Dialogue" method="_on_npc_distraction_stopped"]
+[connection signal="distraction_too_long" from="Character/Npc" to="Dialogue" method="_on_npc_distraction_too_long"]
+[connection signal="button_down" from="CanvasLayer/UI/DialogueOptions/Button" to="Dialogue" method="_select_option_1"]
+[connection signal="button_down" from="CanvasLayer/UI/DialogueOptions/Button2" to="Dialogue" method="_select_option_2"]
 [connection signal="on_distraction_start" from="DistractionManager" to="Character/Player" method="_on_distraction_manager_on_distraction_start"]
+
+[editable path="CanvasLayer/UI/DialogueOptions"]
+[editable path="CanvasLayer/UI/DialogueOptions/Button"]
+[editable path="CanvasLayer/UI/DialogueOptions/Button2"]

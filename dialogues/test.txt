@@ -1,19 +1,76 @@
-It’s so nice to finally meet you!
-I’m wondering if I should get something to eat with my coffee.
-Those chocolate chip cookies looked really good.
-This is one of my favourite places around here, it’s so cozy.
-Oh guess what, on my way here I saw two pidgeons fighting over a falafel roll.
-It was hilarious! 
-So, I’ve been working very hard on my music lately.
-Just formed a new band, it’s called ‘The Maskers’.
-It’s a combination of edgy punk rock and minimal techno.
-We’re releasing our first single next Friday.
-Want to come to the release show?
-I can get you on the list. We’re playing at Mercury Club, showtime is at 11.
-It would mean a lot to me if you were there!
-I mean it’s our first show with the new band. 
-I might actually need some help with finding a cool outfit for the gig.
-Do you have any idea where I could find something?
-Preferably second hand.
-Should I wear some kind of a mask?
-That could be really cool or what do you think? 
+I’m very good thank you!
+Just wondering if I should get something to eat with my coffee. 
+Those chocolate chip cookies looked really good. 
+This is one of my favourite places around here, it’s so cozy. 
+
+Have you been here before?
+
+[?] Yes this is one of my favourites too!
+	Really? That’s great!
+
+[?] No, this is my first time.
+	I’m happy to spread the word about this place.
+
+[?] Yeah once, and you?
+	Yeah all the time, as it is one of my favourites.	
+
+[?] …
+	Umm never mind…
+
+
+So, I’ve been working very hard on my music lately. 
+Just formed a new band, it’s called ‘The Maskers’. 
+It’s a combination of edgy punk rock and minimal techno. 
+
+What kind of music do you like?
+
+[?] I’m into many genres but punk is my favourite.
+	Cool, I really think you should check The Maskers out.
+	We’re actually releasing our first single next Friday.	
+
+[?] I mostly listen to folk music. 
+	Oh we have quite different musical preferences.
+	But if you’d like to try something new, we’re releasing our first single next Friday.
+
+[?] I prefer audio books.
+	Oh ok..
+	But if you’d like to try something new, we’re releasing our first single next Friday.
+
+[?] …
+	… anyway we’re releasing our first single next Friday.
+
+We’re having a release show at Mercury Club.
+Would you like to come?
+
+[?] I’d love to! What time is it?
+	Great, I can get you on the guest list. We’re playing at 11.
+
+[?] I’d love to! Where is it?
+	Like I said, it’s at Mercury Club…
+
+[?] I’d love to! What kind of music do you play?
+	Didn’t I just tell you? Punk rock meets minimal techno.
+
+[?] …
+	Hello…
+
+It would mean a lot to me if you were there! 
+I mean it’s our first show with the new band. 
+
+I might actually need some help with finding a cool outfit for the gig. 
+Preferably second hand. 
+Would you like to help me find something?
+
+[?] Sure, there’s a shopping mall at the corner.
+	Hmm it’s not second hand though…
+
+
+[?] I have a mask that would suit you perfectly want to try?
+	Thank you, I’m definitely interested! 
+
+
+[?] There’s a Vintage Store at my neighbourhood. I can take you there1
+	Sounds great, thank you!
+
+[?] …
+	…

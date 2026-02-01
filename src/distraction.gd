@@ -138,7 +138,7 @@ func _on_knob_value_changed(id: int, value: int) -> void:
 		modulate.a = distraction_value
 
 		# volume: disctraction value 0 = -80db, value 1 = 0db
-		distraction_sound_player.volume_db = -80.0 + (normalized_distance * 80.0)
+		distraction_sound_player.volume_db = -25.0 + (normalized_distance * 25.0)
 
 
 func is_inside_screen(random_point: Vector2) -> bool:

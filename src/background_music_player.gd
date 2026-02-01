@@ -10,11 +10,15 @@ var _accumulated_distraction = 0.0
 
 
 func _process(delta: float) -> void:
+	print("bus count:", AudioServer.bus_count)
 	if _game and _game.distraction_manager and _game.distraction_manager.active_distraction:
 		if _game.distraction_manager.active_distraction.distraction_value > 0.8:
 			_accumulated_distraction = min(1.0, _accumulated_distraction + (0.3 * delta))
 		else:
 			_accumulated_distraction = max(0.0, _accumulated_distraction - (0.3 * delta))
+
+		if not _low_pass:
+			return
 
 		# if the accumulated distraction is between 0 and 0.5 the cutoff default should be 2000
 		# if it's higher than 0.5 we apply the cutoff by reducing the cutoff frequency

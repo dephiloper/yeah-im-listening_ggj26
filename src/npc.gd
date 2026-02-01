@@ -2,7 +2,7 @@ class_name Npc extends Node
 
 @export var intense_distraction_threshold: float = 0.5
 @export var time_spent_distraction_threshold: float = 4
-@export var time_spent_no_distraction_threshold: float = 3
+@export var time_spent_no_distraction_threshold: float = 4
 @export var distraction_level_angry_threshold: float = 2
 
 @export var emote: Sprite2D
@@ -28,12 +28,12 @@ func _process(delta: float) -> void:
 			
 			if _intense_distraction_duration >= time_spent_distraction_threshold:
 				distraction_level += 1
-				print("distracted for too long! %s" % distraction_level)
 				if emote.texture == happy_emote:
 					_set_emote(normal_emote)
 				elif distraction_level >= distraction_level_angry_threshold:
 					distraction_too_long.emit(distraction_level - distraction_level_angry_threshold)
-					_set_emote(angry_emote)
+					if emote.texture != angry_emote:
+						_set_emote(angry_emote)
 
 				_intense_distraction_duration = 0
 		else:
@@ -52,7 +52,6 @@ func _increment_low_distraction(delta: float) -> void:
 	_intense_distraction_duration = 0
 	_low_distraction_duration += delta
 	if _low_distraction_duration >= time_spent_no_distraction_threshold:
-		print("not distracted for a while!")
 		distraction_stopped.emit()
 
 		if emote.texture == angry_emote:

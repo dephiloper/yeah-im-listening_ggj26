@@ -1,6 +1,7 @@
 class_name Dialogue extends Node2D
 
 var option_prefix: String = "[?]"
+var correct_tag: String = "#correct"
 
 @export var characters_per_second: float = 30.0
 @export var delay_between_lines: float = 3.0
@@ -15,6 +16,8 @@ var option_prefix: String = "[?]"
 @export var dialogue_options: Array[Button]
 @export var option_timer_container: ColorRect
 @export var option_timer_bar: ColorRect
+
+@export var fade: ColorRect
 
 var tween: Tween
 var current_line_index: int = 0
@@ -33,6 +36,7 @@ var waiting_for_option: bool = false
 var time_since_option_start: float = 0
 var timer_bar_original_width: float
 
+
 class DialogueEntry:
 	var text: String = ""
 	var options: Array[DialogueOption] = []
@@ -40,9 +44,12 @@ class DialogueEntry:
 	func has_options() -> bool:
 		return options.size() > 0
 
+
 class DialogueOption:
 	var text: String = ""
 	var branch_lines: PackedStringArray = []
+	var is_correct: bool
+
 
 func _ready() -> void:
 	dialogue_entries = load_dialogue_entries()
@@ -51,6 +58,7 @@ func _ready() -> void:
 	hide_dialogue_options()
 	scroll_text(dialogue_entries[current_line_index].text)
 	timer_bar_original_width = option_timer_bar.size.x
+
 
 func _process(delta: float) -> void:
 	rich_text_label.text = get_text()
@@ -72,14 +80,22 @@ func get_text() -> String:
 	var shake_offset_lvl = max_shake_offset * distraction_intesity
 
 	var active_text: String
-	if is_in_branch and current_branch_index >= 0 and current_branch_index < current_branch_lines.size():
+	if (
+		is_in_branch
+		and current_branch_index >= 0
+		and current_branch_index < current_branch_lines.size()
+	):
 		active_text = current_branch_lines[current_branch_index]
 	elif current_line_index < dialogue_entries.size():
 		active_text = dialogue_entries[current_line_index].text
 	else:
 		active_text = ""
 
-	return "[shake rate=%s level=%s connected=1]%s[/shake]" % [shake_rate, shake_offset_lvl, active_text]
+	return (
+		"[shake rate=%s level=%s connected=1]%s[/shake]"
+		% [shake_rate, shake_offset_lvl, active_text]
+	)
+
 
 func load_dialogue_entries() -> Array[DialogueEntry]:
 	var file = FileAccess.open("res://dialogues/test.txt", FileAccess.READ)
@@ -102,6 +118,10 @@ func load_dialogue_entries() -> Array[DialogueEntry]:
 
 			current_option = DialogueOption.new()
 			current_option.text = stripped.substr(len(option_prefix)).strip_edges()
+			if current_option.text.ends_with(correct_tag):
+				current_option.is_correct = true
+				current_option.text = current_option.text.trim_suffix(correct_tag)
+
 			current_entry.options.append(current_option)
 		elif (line.begins_with("\t") or line.begins_with("    ")) and current_option != null:
 			current_option.branch_lines.append(stripped)
@@ -112,6 +132,7 @@ func load_dialogue_entries() -> Array[DialogueEntry]:
 			current_option = null
 
 	return entries
+
 
 func load_distracted_lines() -> Array[PackedStringArray]:
 	var file = FileAccess.open("res://dialogues/annoyed.txt", FileAccess.READ)
@@ -127,6 +148,7 @@ func load_distracted_lines() -> Array[PackedStringArray]:
 			line_block = []
 	return lines
 
+
 func scroll_text(text: String) -> void:
 	if tween:
 		tween.kill()
@@ -140,6 +162,7 @@ func scroll_text(text: String) -> void:
 	tween = create_tween()
 	tween.tween_property(rich_text_label, "visible_characters", total_characters, duration)
 	tween.tween_callback(scroll_next_line).set_delay(delay_between_lines)
+
 
 func scroll_next_line() -> void:
 	if is_in_branch:
@@ -163,9 +186,11 @@ func scroll_next_line() -> void:
 	current_line_index += 1
 	advance_to_next_entry()
 
+
 func advance_to_next_entry() -> void:
 	if current_line_index >= dialogue_entries.size():
 		current_line_index = dialogue_entries.size() - 1
+		fade_out()
 		return
 
 	var entry = dialogue_entries[current_line_index]
@@ -177,7 +202,17 @@ func advance_to_next_entry() -> void:
 
 	scroll_text(entry.text)
 
+func fade_out():
+	fade.visible = true
+	var fade_tween = create_tween()
+	fade_tween.tween_property(fade, "color:a", 1, 2)
+	fade_tween.tween_callback(load_end).set_delay(1)
+	
+func load_end():
+	get_tree().change_scene_to_file("res://scenes/end.tscn")
+
 func show_dialogue_options(options: Array[DialogueOption]) -> void:
+	distraction_manager.pause_distraction()
 	for i in range(dialogue_options.size()):
 		if i < options.size():
 			dialogue_options[i].text = options[i].text
@@ -187,10 +222,15 @@ func show_dialogue_options(options: Array[DialogueOption]) -> void:
 	option_timer_container.visible = true
 	option_timer_bar.size.x = timer_bar_original_width
 
+
 func hide_dialogue_options() -> void:
 	for option_label in dialogue_options:
 		option_label.visible = false
 	option_timer_container.visible = false
+
+	# DEBUG if you want to play the distraction right away :>
+	# distraction_manager.resume_distraction()
+
 
 func select_option(option_index: int) -> void:
 	time_since_option_start = 0
@@ -206,6 +246,11 @@ func select_option(option_index: int) -> void:
 
 	var selected_option = current_entry.options[option_index]
 
+	if selected_option.is_correct:
+		Global.add_correct_answer()
+	else:
+		Global.add_incorrect_answer()
+
 	if selected_option.branch_lines.size() > 0:
 		is_in_branch = true
 		current_branch_lines = selected_option.branch_lines
@@ -215,17 +260,39 @@ func select_option(option_index: int) -> void:
 		current_line_index += 1
 		advance_to_next_entry()
 
+	distraction_manager.resume_distraction()
+
+
 func _on_npc_distraction_too_long(level: int) -> void:
 	return
+
 
 func _on_npc_distraction_stopped() -> void:
 	return
 
+
 func _select_option_1() -> void:
 	select_option(0)
+
 
 func _select_option_2() -> void:
 	select_option(1)
 
+
 func _select_option_3() -> void:
 	select_option(2)
+
+
+func _input(input_event):
+	if input_event is InputEventMIDI:
+		_process_midi_info(input_event)
+
+
+func _process_midi_info(midi_event: InputEventMIDI) -> void:
+	if not waiting_for_option:
+		return
+
+	if midi_event.pitch < 59:
+		_select_option_1()
+	if midi_event.pitch > 59:
+		_select_option_2()

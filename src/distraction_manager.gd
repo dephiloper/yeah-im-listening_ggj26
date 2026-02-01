@@ -6,6 +6,8 @@ var active_distraction: Distraction = null
 var _last_distraction_id: String = ""
 var last_distraction_window: Array = []
 
+var interruption: bool = true
+
 @onready var distraction_timer: Timer = %Timer
 
 signal on_distraction_start
@@ -27,6 +29,10 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	if interruption:
+		_free_distraction()
+		return
+
 	if not active_distraction:
 		var no_duplicate_distraction_pool := distraction_pool.filter(
 			func(dist): return dist.distraction_id != _last_distraction_id
@@ -52,7 +58,21 @@ func _process(_delta: float) -> void:
 
 
 func _on_distraction_timer_timeout() -> void:
+	_free_distraction()
+
+
+func _free_distraction() -> void:
 	if active_distraction:
 		_last_distraction_id = active_distraction.distraction_id
 		active_distraction.queue_free()
 		active_distraction = null
+
+
+func pause_distraction() -> void:
+	interruption = true
+	distraction_timer.stop()
+
+
+func resume_distraction() -> void:
+	interruption = false
+	distraction_timer.start()

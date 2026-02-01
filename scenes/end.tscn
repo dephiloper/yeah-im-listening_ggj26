@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://d2nictgjnht0l"]
+
+[ext_resource type="Script" uid="uid://dn27etn5encr1" path="res://src/end.gd" id="1_p7m4f"]
+[ext_resource type="Texture2D" uid="uid://b81pl3jig8wvu" path="res://assets/sprites/endingbg.png" id="3_p7m4f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3d26k"]
+font_size = 24
+font_color = Color(0.1254902, 0.07450981, 0.23529412, 1)
+
+[node name="Game" type="Node2D" unique_id=543216258 node_paths=PackedStringArray("text")]
+script = ExtResource("1_p7m4f")
+happy_ending = "I got a second date?!"
+sad_ending = "I got ghosted... perfect"
+text = NodePath("CanvasLayer/UI/ColorRect/Label")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=480507563]
+unique_name_in_owner = true
+offset = Vector2(320, 180)
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=1395502102]
+z_index = -2
+position = Vector2(318.11108, 180)
+texture = ExtResource("3_p7m4f")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1449652601]
+
+[node name="UI" type="Control" parent="CanvasLayer" unique_id=565782778]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/UI" unique_id=1985373633]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -327.0
+offset_top = -35.0
+offset_right = 331.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1264546, 0.07405999, 0.23693943, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/ColorRect" unique_id=16286275]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = -21.0
+offset_right = 172.0
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9444724, 1, 0.7696371, 1)
+text = "I got ghosted... perfect."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/UI" unique_id=830375135]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 280.0
+offset_bottom = 64.0
+text = "2 days later..."
+label_settings = SubResource("LabelSettings_3d26k")

@@ -63,3 +63,7 @@ func _increment_low_distraction(delta: float) -> void:
 		if distraction_level < 0:
 			distraction_level = 0
 		_low_distraction_duration = 0
+
+func _set_distraction_level(value: int) -> void:
+	distraction_level = value
+	Global.distraction_level = distraction_level

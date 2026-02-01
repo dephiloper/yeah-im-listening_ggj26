@@ -54,6 +54,11 @@ func _process(delta: float) -> void:
 	_time_passed += delta
 	_appear_alpha = min(1.0, _time_passed * 2.0)
 	modulate.a = distraction_value * _appear_alpha
+	# volume: disctraction value 0 = -25db, value 1 = 0db
+	distraction_sound_player.volume_db = -25.0 + (distraction_value * _appear_alpha * 25.0)
+
+	if is_hovering:
+		offset.y = sin(_time_passed * 15) * 3
 
 	if not is_moving:
 		return
@@ -79,9 +84,6 @@ func _process(delta: float) -> void:
 	_velocity += target_velocity * 0.1
 	_velocity = _velocity.normalized()
 	position += _velocity * delta * 32
-
-	if is_hovering:
-		offset.y = sin(_time_passed * 15) * 3
 
 	if _velocity.x > 0.2:
 		flip_h = true
@@ -131,13 +133,11 @@ func _on_knob_value_changed(id: int, value: int) -> void:
 
 		var normalized_distance: float = min(dist / value_range, 1.0)
 
-		# if the normalized distance is smaller than 0.2 you hit a sweet spot
+		# if the normalized distance is smaller than 0.3 you hit a sweet spot
 		if normalized_distance < 0.3:
 			normalized_distance = 0.0
 
 		distraction_value = normalized_distance
-		# volume: disctraction value 0 = -25db, value 1 = 0db
-		distraction_sound_player.volume_db = -25.0 + (normalized_distance * 25.0)
 
 
 func is_inside_screen(random_point: Vector2) -> bool:

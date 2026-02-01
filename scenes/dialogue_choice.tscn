@@ -22,3 +22,4 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_meg7l")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_elk6r")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hclow")
 text = "Sure"
+autowrap_mode = 2

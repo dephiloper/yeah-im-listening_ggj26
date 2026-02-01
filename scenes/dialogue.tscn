@@ -4,9 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://dgridweynpaod" path="res://assets/sprites/ui_speechbubble.png" id="2_3n4vj"]
 [ext_resource type="PackedScene" uid="uid://cmumjajheonv0" path="res://scenes/dialogue_choice.tscn" id="3_bfpow"]
 
-[node name="Dialogue" type="Node2D" unique_id=292700514 node_paths=PackedStringArray("dialogue_options")]
+[sub_resource type="Theme" id="Theme_bfpow"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fyky8"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Dialogue" type="Node2D" unique_id=292700514 node_paths=PackedStringArray("dialogue_options", "option_timer_container", "option_timer_bar")]
 script = ExtResource("1_jwyou")
-dialogue_options = [NodePath("Button"), NodePath("Button2"), NodePath("Button3")]
+dialogue_options = [NodePath("Button"), NodePath("Button2")]
+option_timer_container = NodePath("ColorRect")
+option_timer_bar = NodePath("ColorRect/ColorRect")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1309504694]
 offset_right = 40.0
@@ -36,26 +43,48 @@ vertical_alignment = 1
 
 [node name="Button" parent="." unique_id=1086771891 instance=ExtResource("3_bfpow")]
 offset_left = 2.0
-offset_top = 183.0
+offset_top = 258.0
 offset_right = 185.0
-offset_bottom = 234.0
+offset_bottom = 309.0
+theme = SubResource("Theme_bfpow")
+theme_override_styles/normal = SubResource("StyleBoxFlat_fyky8")
 
 [node name="Button2" parent="." unique_id=1820461624 instance=ExtResource("3_bfpow")]
-offset_left = 229.0
-offset_top = 183.0
-offset_right = 412.0
-offset_bottom = 234.0
+offset_left = 414.0
+offset_top = 258.0
+offset_right = 597.0
+offset_bottom = 309.0
 
-[node name="Button3" parent="." unique_id=52556015 instance=ExtResource("3_bfpow")]
-offset_left = 455.0
-offset_top = 183.0
-offset_right = 638.0
-offset_bottom = 234.0
+[node name="ColorRect" type="ColorRect" parent="." unique_id=166291438]
+offset_left = 19.0
+offset_top = 225.0
+offset_right = 579.0
+offset_bottom = 235.0
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect" unique_id=672244665]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -278.0
+offset_top = -3.0
+offset_right = 278.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(300, 5)
+color = Color(0.8123844, 0.36345094, 0.43907696, 1)
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=313303650]
+offset_left = 72.0
+offset_top = 144.0
+offset_right = 112.0
+offset_bottom = 184.0
 
 [connection signal="button_down" from="Button" to="." method="_select_option_1"]
 [connection signal="button_down" from="Button2" to="." method="_select_option_2"]
-[connection signal="button_down" from="Button3" to="." method="_select_option_3"]
 
 [editable path="Button"]
 [editable path="Button2"]
-[editable path="Button3"]

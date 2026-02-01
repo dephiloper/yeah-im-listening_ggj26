@@ -10,6 +10,8 @@ What kind of food do you like?
 [?] I'm not much of a foodie
 	That's a shame.
     Maybe I can find something you like.
+[?] ...
+    Umm, ok nevermind.
 This is one of my favourite places around here, it’s so cozy.
 Oh guess what, on my way here I saw two pidgeons fighting over a falafel roll.
 It was hilarious! 
@@ -27,6 +29,8 @@ Want to come to the release show?
 [?] I'm not sure...
 	Oh come on, it'll be fun!
 	Just think about it, okay?
+[?] ...
+    I guess that's a no then.
 It would mean a lot to me if you were there!
 I mean it’s our first show with the new band. 
 I might actually need some help with finding a cool outfit for the gig.

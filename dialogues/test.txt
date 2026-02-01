@@ -1,6 +1,17 @@
 It’s so nice to finally meet you!
 I’m wondering if I should get something to eat with my coffee.
 Those chocolate chip cookies looked really good.
+What kind of food do you like?
+[?] Anything spicy
+	Oh I see.
+	One of those who lives life on the edge huh?
+[?] Simple hearty things
+	Same here! Those are the best!
+[?] I'm not much of a foodie
+	That's a shame.
+    Maybe I can find something you like.
+[?] ...
+    Umm, ok nevermind.
 This is one of my favourite places around here, it’s so cozy.
 Oh guess what, on my way here I saw two pidgeons fighting over a falafel roll.
 It was hilarious! 
@@ -9,7 +20,17 @@ Just formed a new band, it’s called ‘The Maskers’.
 It’s a combination of edgy punk rock and minimal techno.
 We’re releasing our first single next Friday.
 Want to come to the release show?
-I can get you on the list. We’re playing at Mercury Club, showtime is at 11.
+[?] Yes, I'd love to!
+	That's amazing! I'll put you on the list right away.
+	You won't regret it, it's going to be epic!
+[?] When is it again?
+	We're playing at Mercury Club, showtime is at 11.
+	It's next Friday, don't forget!
+[?] I'm not sure...
+	Oh come on, it'll be fun!
+	Just think about it, okay?
+[?] ...
+    I guess that's a no then.
 It would mean a lot to me if you were there!
 I mean it’s our first show with the new band. 
 I might actually need some help with finding a cool outfit for the gig.

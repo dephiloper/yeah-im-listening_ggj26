@@ -1,6 +1,7 @@
 class_name Dialogue extends Node2D
 
 var option_prefix: String = "[?]"
+var correct_tag: String = "#correct"
 
 @export var characters_per_second: float = 30.0
 @export var delay_between_lines: float = 3.0
@@ -43,6 +44,7 @@ class DialogueEntry:
 class DialogueOption:
 	var text: String = ""
 	var branch_lines: PackedStringArray = []
+	var is_correct: bool
 
 func _ready() -> void:
 	dialogue_entries = load_dialogue_entries()
@@ -102,6 +104,10 @@ func load_dialogue_entries() -> Array[DialogueEntry]:
 
 			current_option = DialogueOption.new()
 			current_option.text = stripped.substr(len(option_prefix)).strip_edges()
+			if current_option.text.ends_with(correct_tag):
+				current_option.is_correct = true
+				current_option.text = current_option.text.trim_suffix(correct_tag)
+
 			current_entry.options.append(current_option)
 		elif (line.begins_with("\t") or line.begins_with("    ")) and current_option != null:
 			current_option.branch_lines.append(stripped)
@@ -166,6 +172,7 @@ func scroll_next_line() -> void:
 func advance_to_next_entry() -> void:
 	if current_line_index >= dialogue_entries.size():
 		current_line_index = dialogue_entries.size() - 1
+		get_tree().change_scene_to_file("res://scenes/end.tscn")
 		return
 
 	var entry = dialogue_entries[current_line_index]
@@ -205,6 +212,11 @@ func select_option(option_index: int) -> void:
 	hide_dialogue_options()
 
 	var selected_option = current_entry.options[option_index]
+
+	if selected_option.is_correct:
+		Global.correct_answers_count += 1
+	else:
+		Global.incorrect_answers_count += 1
 
 	if selected_option.branch_lines.size() > 0:
 		is_in_branch = true

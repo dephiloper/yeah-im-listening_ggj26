@@ -202,14 +202,17 @@ func advance_to_next_entry() -> void:
 
 	scroll_text(entry.text)
 
+
 func fade_out():
 	fade.visible = true
 	var fade_tween = create_tween()
 	fade_tween.tween_property(fade, "color:a", 1, 2)
 	fade_tween.tween_callback(load_end).set_delay(1)
-	
+
+
 func load_end():
 	get_tree().change_scene_to_file("res://scenes/end.tscn")
+
 
 func show_dialogue_options(options: Array[DialogueOption]) -> void:
 	distraction_manager.pause_distraction()
@@ -229,7 +232,7 @@ func hide_dialogue_options() -> void:
 	option_timer_container.visible = false
 
 	# DEBUG if you want to play the distraction right away :>
-	# distraction_manager.resume_distraction()
+	distraction_manager.resume_distraction()
 
 
 func select_option(option_index: int) -> void:

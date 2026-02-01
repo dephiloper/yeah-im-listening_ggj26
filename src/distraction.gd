@@ -28,6 +28,10 @@ var _time_passed: float = 0.0
 var _appear_alpha: float = 1.0
 
 
+func _enter_tree() -> void:
+	visible = false
+
+
 func _ready() -> void:
 	_game = find_parent("Game")
 	_game.game_ready.connect(_on_knobs_ready)
@@ -48,6 +52,8 @@ func _ready() -> void:
 	if distraction_sound:
 		distraction_sound_player.stream = distraction_sound
 		distraction_sound_player.play()
+
+	visible = true
 
 
 func _process(delta: float) -> void:

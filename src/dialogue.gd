@@ -1,6 +1,7 @@
 class_name Dialogue extends Node2D
 
 var option_prefix: String = "[?]"
+var correct_tag: String = "#correct"
 
 @export var characters_per_second: float = 30.0
 @export var delay_between_lines: float = 3.0
@@ -15,6 +16,8 @@ var option_prefix: String = "[?]"
 @export var dialogue_options: Array[Button]
 @export var option_timer_container: ColorRect
 @export var option_timer_bar: ColorRect
+
+@export var fade: ColorRect
 
 var tween: Tween
 var current_line_index: int = 0
@@ -45,6 +48,7 @@ class DialogueEntry:
 class DialogueOption:
 	var text: String = ""
 	var branch_lines: PackedStringArray = []
+	var is_correct: bool
 
 
 func _ready() -> void:
@@ -114,6 +118,10 @@ func load_dialogue_entries() -> Array[DialogueEntry]:
 
 			current_option = DialogueOption.new()
 			current_option.text = stripped.substr(len(option_prefix)).strip_edges()
+			if current_option.text.ends_with(correct_tag):
+				current_option.is_correct = true
+				current_option.text = current_option.text.trim_suffix(correct_tag)
+
 			current_entry.options.append(current_option)
 		elif (line.begins_with("\t") or line.begins_with("    ")) and current_option != null:
 			current_option.branch_lines.append(stripped)
@@ -182,6 +190,7 @@ func scroll_next_line() -> void:
 func advance_to_next_entry() -> void:
 	if current_line_index >= dialogue_entries.size():
 		current_line_index = dialogue_entries.size() - 1
+		fade_out()
 		return
 
 	var entry = dialogue_entries[current_line_index]
@@ -193,6 +202,14 @@ func advance_to_next_entry() -> void:
 
 	scroll_text(entry.text)
 
+func fade_out():
+	fade.visible = true
+	var fade_tween = create_tween()
+	fade_tween.tween_property(fade, "color:a", 1, 2)
+	fade_tween.tween_callback(load_end).set_delay(1)
+	
+func load_end():
+	get_tree().change_scene_to_file("res://scenes/end.tscn")
 
 func show_dialogue_options(options: Array[DialogueOption]) -> void:
 	distraction_manager.pause_distraction()
@@ -228,6 +245,11 @@ func select_option(option_index: int) -> void:
 	hide_dialogue_options()
 
 	var selected_option = current_entry.options[option_index]
+
+	if selected_option.is_correct:
+		Global.add_correct_answer()
+	else:
+		Global.add_incorrect_answer()
 
 	if selected_option.branch_lines.size() > 0:
 		is_in_branch = true

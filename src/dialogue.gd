@@ -67,6 +67,7 @@ func _ready() -> void:
 		hide_dialogue_options()
 		scroll_text(current_entry.text)
 
+
 func _process(delta: float) -> void:
 	rich_text_label.text = get_text()
 	if waiting_for_option && option_timer_container.visible:
@@ -210,14 +211,17 @@ func advance_to_next_entry() -> void:
 
 	scroll_text(entry.text)
 
+
 func fade_out():
 	fade.visible = true
 	var fade_tween = create_tween()
 	fade_tween.tween_property(fade, "color:a", 1, 2)
 	fade_tween.tween_callback(load_end).set_delay(1)
-	
+
+
 func load_end():
 	get_tree().change_scene_to_file("res://scenes/end.tscn")
+
 
 func show_dialogue_options(options: Array[DialogueOption], show_timer: bool) -> void:
 	distraction_manager.pause_distraction()

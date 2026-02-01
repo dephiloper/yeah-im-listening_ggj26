@@ -12,11 +12,8 @@
 [ext_resource type="Script" uid="uid://cathmilgesr1l" path="res://src/protagonist.gd" id="6_sgl2t"]
 [ext_resource type="Texture2D" uid="uid://dg2ls2sifjyg6" path="res://assets/sprites/player2.png" id="7_wljb1"]
 [ext_resource type="Script" uid="uid://dbj7wfuarcld4" path="res://src/distraction_manager.gd" id="8_kvpfn"]
-<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://26y3eyefh7vb" path="res://assets/sprites/knob_hint.png" id="8_qouja"]
-=======
 [ext_resource type="Texture2D" uid="uid://brhbnd3l1xr8p" path="res://assets/sprites/player3.png" id="8_v2yb1"]
->>>>>>> 11ee762415d2799ff66ceb2e058503f0ebe27edb
 [ext_resource type="PackedScene" uid="uid://bvhr1fkliq18f" path="res://scenes/distraction.tscn" id="9_dinhu"]
 [ext_resource type="Texture2D" uid="uid://08jm114jbwtr" path="res://assets/sprites/cat1.png" id="11_1kice"]
 [ext_resource type="Texture2D" uid="uid://b1k5jpvgahun" path="res://assets/sprites/cat2.png" id="12_5newe"]

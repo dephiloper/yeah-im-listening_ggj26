@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dgmh0cvdqsg1g"]
+
+[ext_resource type="PackedScene" uid="uid://cmumjajheonv0" path="res://scenes/dialogue_choice.tscn" id="1_mixio"]
+
+[sub_resource type="Theme" id="Theme_8ool0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pr1ej"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="DialogueOptions" type="Control" unique_id=1544586262]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -360.0
+offset_right = 320.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" parent="." unique_id=1086771891 instance=ExtResource("1_mixio")]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 278.0
+offset_right = 204.0
+offset_bottom = 329.0
+theme = SubResource("Theme_8ool0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pr1ej")
+
+[node name="Button2" parent="." unique_id=442190027 instance=ExtResource("1_mixio")]
+layout_mode = 0
+offset_left = 433.0
+offset_top = 278.0
+offset_right = 616.0
+offset_bottom = 329.0
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=772942520]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 245.0
+offset_right = 598.0
+offset_bottom = 255.0
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect" unique_id=230804025]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -278.0
+offset_top = -3.0
+offset_right = 278.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(300, 5)
+color = Color(0.8123844, 0.36345094, 0.43907696, 1)
+
+[editable path="Button"]
+[editable path="Button2"]

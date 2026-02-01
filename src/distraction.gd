@@ -25,6 +25,8 @@ var _velocity: Vector2 = Vector2.ZERO
 
 var _time_passed: float = 0.0
 
+var _appear_alpha: float = 1.0
+
 
 func _ready() -> void:
 	_game = find_parent("Game")
@@ -47,13 +49,12 @@ func _ready() -> void:
 		distraction_sound_player.stream = distraction_sound
 		distraction_sound_player.play()
 
-	# print(
-	# 	"new distraction '%s' with range between %d and %d" % [distraction_id, min_value, max_value]
-	# )
-
 
 func _process(delta: float) -> void:
 	_time_passed += delta
+	_appear_alpha = min(1.0, _time_passed * 2.0)
+	modulate.a = distraction_value * _appear_alpha
+
 	if not is_moving:
 		return
 
@@ -135,9 +136,7 @@ func _on_knob_value_changed(id: int, value: int) -> void:
 			normalized_distance = 0.0
 
 		distraction_value = normalized_distance
-		modulate.a = distraction_value
-
-		# volume: disctraction value 0 = -80db, value 1 = 0db
+		# volume: disctraction value 0 = -25db, value 1 = 0db
 		distraction_sound_player.volume_db = -25.0 + (normalized_distance * 25.0)
 
 

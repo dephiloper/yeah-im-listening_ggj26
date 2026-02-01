@@ -10,6 +10,11 @@ class_name Npc extends Node
 @export var normal_emote: Texture2D
 @export var angry_emote: Texture2D
 
+@export var emote_player: AudioStreamPlayer2D
+@export var happy_sound: AudioStream
+@export var normal_sound: AudioStream
+@export var angry_sound: AudioStream
+
 @onready var distraction_manager: DistractionManager = %DistractionManager
 
 var _intense_distraction_duration: float
@@ -29,17 +34,19 @@ func _process(delta: float) -> void:
 			if _intense_distraction_duration >= time_spent_distraction_threshold:
 				distraction_level += 1
 				if emote.texture == happy_emote:
-					_set_emote(normal_emote)
+					_set_emote(normal_emote, normal_sound)
 				elif distraction_level >= distraction_level_angry_threshold:
 					distraction_too_long.emit(distraction_level - distraction_level_angry_threshold)
 					if emote.texture != angry_emote:
-						_set_emote(angry_emote)
+						_set_emote(angry_emote, angry_sound)
 
 				_intense_distraction_duration = 0
 		else:
 			_increment_low_distraction(delta)
 
-func _set_emote(new_emote: Texture2D) -> void:
+func _set_emote(new_emote: Texture2D, audio: AudioStream) -> void:
+	if audio:
+		_play_sound(audio)
 	emote.texture = new_emote
 	emote.modulate.a = 1.0
 	if _emote_tween:
@@ -55,9 +62,9 @@ func _increment_low_distraction(delta: float) -> void:
 		distraction_stopped.emit()
 
 		if emote.texture == angry_emote:
-			_set_emote(normal_emote)
+			_set_emote(normal_emote, normal_sound)
 		elif emote.texture == normal_emote or emote.texture == null:
-			_set_emote(happy_emote)
+			_set_emote(happy_emote, happy_sound)
 
 		distraction_level -= 1
 		if distraction_level < 0:
@@ -67,3 +74,7 @@ func _increment_low_distraction(delta: float) -> void:
 func _set_distraction_level(value: int) -> void:
 	distraction_level = value
 	Global.distraction_level = distraction_level
+
+func _play_sound(audio: AudioStream) -> void:
+	emote_player.stream = audio
+	emote_player.play()

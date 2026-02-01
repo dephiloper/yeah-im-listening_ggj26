@@ -5,14 +5,21 @@
 [ext_resource type="Texture2D" uid="uid://cjbntcypo7v4t" path="res://assets/sprites/ui_happy.png" id="3_4wlns"]
 [ext_resource type="Texture2D" uid="uid://bsvx64mj84m6i" path="res://assets/sprites/ui_emo_angry.png" id="3_rv78h"]
 [ext_resource type="Texture2D" uid="uid://jhx5apcju1hm" path="res://assets/sprites/ui_normal.png" id="4_4wlns"]
+[ext_resource type="AudioStream" uid="uid://dsq70qmoi3x5b" path="res://assets/audio/smileyemoji_sound.wav" id="6_hwkja"]
+[ext_resource type="AudioStream" uid="uid://ftqeqtgp0g6o" path="res://assets/audio/angryemoji_sound.wav" id="7_0tygy"]
 
-[node name="Npc" type="Sprite2D" unique_id=950719507 node_paths=PackedStringArray("emote")]
+[node name="Npc" type="Sprite2D" unique_id=950719507 node_paths=PackedStringArray("emote", "emote_player")]
 texture = ExtResource("1_abqhh")
 script = ExtResource("2_rv78h")
 emote = NodePath("Sprite2D")
 happy_emote = ExtResource("3_4wlns")
 normal_emote = ExtResource("4_4wlns")
 angry_emote = ExtResource("3_rv78h")
+emote_player = NodePath("AudioStreamPlayer2D")
+happy_sound = ExtResource("6_hwkja")
+angry_sound = ExtResource("7_0tygy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=870824356]
 position = Vector2(38, -48)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1223837991]
